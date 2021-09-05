@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Http\Controllers\UserControllers;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Product;
+class ProductController extends Controller
+{
+
+    public function GetProducts(Request $request){
+       
+        $products = Product::where("category_id",$request->category_id)->get();
+        
+        return view("website.products",compact("products"));
+
+    }
+
+
+    public function GetSingleProductDetails($id){
+        $product = Product::findOrFail($id);
+        return view("website/single-product",compact("product"));
+        
+    }
+}
