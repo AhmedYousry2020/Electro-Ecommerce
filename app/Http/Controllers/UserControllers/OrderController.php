@@ -42,7 +42,7 @@ class OrderController extends Controller
        $order->update(['total_price'=>$cart->total_price]);
        $cart->delete();
 
-        return redirect("/home")->with("success","added_successfully");
+        return redirect()->route("cart.items");
 
     }
 

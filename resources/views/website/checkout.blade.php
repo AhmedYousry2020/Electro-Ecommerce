@@ -21,6 +21,7 @@
         <!-- checkout area start -->
         <div class="checkout-area pt-100px pb-100px">
             <div class="container">
+            @include("website.partials._sessions")
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="billing-info-wrap">

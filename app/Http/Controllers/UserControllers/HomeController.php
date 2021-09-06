@@ -11,10 +11,14 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
-        
-        $products = Product::with("category")->get();
+        $products = Product::when($request->input('searchBy'),function($q) use ($request){
+
+            return $q->where('name','like','%'.$request->input('searchBy').'%');
+        })->with("category")->orderBy('name', 'asc')->get();
+
+      
         return view("website/home",compact("products"));
     }
 
@@ -26,5 +30,6 @@ class HomeController extends Controller
 
         return view("website.my-account",compact("orders"));
     }
+
 
 }

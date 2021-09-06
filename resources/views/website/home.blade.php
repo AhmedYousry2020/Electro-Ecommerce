@@ -101,17 +101,23 @@
                                     </div>
                                  
                                     <div class="actions">
-                                    <form id="AddToCart-form-{{$product->id}}" action="{{route('AddToCart')}}" method="POST">
+                                    <form id="AddToCart-form-{{$product->id}}" action="{{route('AddToCart')}}" method="POST" style="display:none">
                                         @csrf 
                                         <input type="hidden" class ="quantity" name="quantity" value="1">
                                         
                                         <input type="hidden" name="product_id" value="{{$product->id}}">
                                       </form>
+                                      <form id="AddToWishList-form-{{$product->id}}" action="{{route('AddItemToWishList')}}" method="POST" style="display:none">
+                                                  @csrf 
+                                        
+                                                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                    </form>
                                                 <button title="Add To Cart" class="action add-to-cart" onclick="event.preventDefault();
                                                      document.getElementById('AddToCart-form-{{$product->id}}').submit();" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
                                                     class="pe-7s-shopbag"></i></button>
                                                   
-                                                <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
+                                                <button class="action wishlist" title="Wishlist" onclick="event.preventDefault();
+                                                     document.getElementById('AddToWishList-form-{{$product->id}}').submit();" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
                                                         class="pe-7s-like"></i></button>
                                                 <a href="{{route('product.details',$product->id)}}" title="Quick view" class="action quickview" data-link-action="quickview" ><i class="pe-7s-look"></i></a>
                                                 <button class="action compare" title="Compare" data-bs-toggle="modal" data-bs-target="#exampleModal-Compare"><i

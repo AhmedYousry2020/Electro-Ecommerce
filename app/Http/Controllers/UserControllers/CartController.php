@@ -99,24 +99,29 @@ class CartController extends Controller
     }
 
     public function UpdateCartItems(Request $request){
-        
-        $request->validate([
-            'prdouct_ids'=>'required|array',
+       
+        $request->validate([  
+            'product_ids'=>'required|array',
             'quantities'=>'required|array'
         ]);
-        dd($request->all());
+       
       
-        exit();
         $user = Auth::user();
         $cart = Cart::where("user_id",$user->id)->where("status",1)->first();  
+       
+        // if($cart->total_price){
+        //     $total_price =  $cart->total_price;   
+        // }else{
+        //     $total_price = 0;
+        // }
         $total_price = 0;
-
-        foreach ($request->prdouct_ids as $index=>$product){
+        foreach ($request->product_ids as $index=>$product){
             $product = Product::FindOrFail($product);
-        $total_price += $product->sale_price * $request->quantities[$index];
-    
+        
+         $cart->products()->detach($product);
          $cart->products()->attach($product ,['quantity'=>$request->quantities[$index]]);
-         
+         $total_price += $product->sale_price * $request->quantities[$index];
+        
         }
         $cart->update(['total_price'=>$total_price]);
         

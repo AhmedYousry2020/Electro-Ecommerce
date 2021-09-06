@@ -2,6 +2,7 @@
 <html lang="zxx" dir="ltr">
 
 <head>
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@
     <link rel="stylesheet" href="{{asset('website_files/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{asset('website_files/css/font.awesome.css')}}" />
     <link rel="stylesheet" href="{{asset('website_files/css/pe-icon-7-stroke.css')}}" />
-    <link rel="stylesheet" href="{{asset('website_files/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{asset('website_files/css/anima   te.min.css')}}">
     <link rel="stylesheet" href="{{asset('website_files/css/swiper-bundle.min.css')}}">
     <link rel="stylesheet" href="{{asset('website_files/css/venobox.css')}}">
     <link rel="stylesheet" href="{{asset('website_files/css/jquery-ui.min.css')}}">
@@ -62,10 +63,11 @@
                         </div>
                         <div class="col-lg-6 d-none d-lg-block">
                             <div class="search-element">
-                                <form action="#">
-                                    <input type="text" placeholder="Search" />
-                                    <button><i class="pe-7s-search"></i></button>
-                                </form>
+                            <form action="{{route('home')}}" method="get">
+                        
+                            <input type="text" placeholder="Search" name="searchBy" />
+                            <button type="submit"><i class="pe-7s-search"></i></button>
+                        </form>
                             </div>
                         </div>
                         <div class="col-lg-3 col">
@@ -120,10 +122,11 @@
                         </div>
                         <div class="col-lg-6 d-none d-lg-block">
                             <div class="search-element">
-                                <form action="#">
-                                    <input type="text" placeholder="Search" />
-                                    <button><i class="pe-7s-search"></i></button>
-                                </form>
+                            <form action="{{route('home')}}" method="get">
+                        @csrf
+                            <input type="text" placeholder="Search" name="searchBy" />
+                            <button type="submit"><i class="pe-7s-search"></i></button>
+                        </form>
                             </div>
                         </div>
                         <div class="col-lg-3 col">
@@ -135,20 +138,27 @@
                                 <!-- Single Wedge End -->
                                 <a href="#offcanvas-cart" class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
                                     <i class="pe-7s-shopbag"></i>
-                                   @auth
-                                   @if( $cart = Auth::user()->carts->where("status","1")->first())
+                                    @auth
+                                   @if($cart = Auth::user()->carts->where("status","1")->first())
                                    <span class="header-action-num"> 
                                    
                                    {{$cart->products->count()}}
 
                                   </span>
+                                  @else
+                                  <span class="header-action-num"> 
+                                   
+                                   0
+                                  </span>
                                   @endif
+
                                    @endauth
+                                   @guest
                                     <span class="header-action-num"> 
                                    
-                                    000
+                                    0
                                    </span>
-                                    <!-- <span class="cart-amount">€30.00</span> -->
+                                  @endguest 
                                 </a>
                                 <a href="#offcanvas-mobile-menu" class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
                                     <i class="pe-7s-menu"></i>
@@ -187,23 +197,23 @@
                                         <li class="d-flex">
                                             <ul class="d-block">
                                                 <li class="title"><a href="#">Mobile Phones</a></li>
-                                                <li><a href="shop-3-column.html">Samsung</a></li>
-                                                <li><a href="shop-4-column.html">Oppo</a></li>
-                                                <li><a href="shop-left-sidebar.html">Redmi</a></li>
-                                                <li><a href="shop-right-sidebar.html">Sony</a></li>
-                                                <li><a href="shop-list-left-sidebar.html">Huwaui</a>
+                                                <li><a href="#">Samsung</a></li>
+                                                <li><a href="#">Oppo</a></li>
+                                                <li><a href="#">Redmi</a></li>
+                                                <li><a href="#">Sony</a></li>
+                                                <li><a href="#">Huwaui</a>
                                                 </li>
-                                                <li><a href="shop-list-right-sidebar.html">Nokia</a>
+                                                <li><a href="#">Nokia</a>
                                                 </li>
                                             </ul>
                                             <ul class="d-block">
                                                 <li class="title"><a href="#">Laptops</a></li>
-                                                <li><a href="single-product.html">HP</a></li>
-                                                <li><a href="single-product-variable.html">Dell</a></li>
-                                                <li><a href="single-product-affiliate.html">Mac</a></li>
-                                                <li><a href="single-product-group.html">Samsung</a></li>
-                                                <li><a href="single-product-tabstyle-2.html">Lenovo</a></li>
-                                                <li><a href="single-product-tabstyle-3.html">Toshiba</a></li>
+                                                <li><a href="#">HP</a></li>
+                                                <li><a href="#">Dell</a></li>
+                                                <li><a href="#">Mac</a></li>
+                                                <li><a href="#">Samsung</a></li>
+                                                <li><a href="#">Lenovo</a></li>
+                                                <li><a href="#">Toshiba</a></li>
                                             </ul>
                                            
                                         </li>
@@ -250,9 +260,10 @@
                 <div class="container">
                     <!-- mobile search start -->
                     <div class="search-element max-width-100">
-                        <form action="#">
-                            <input type="text" placeholder="Search" />
-                            <button><i class="pe-7s-search"></i></button>
+                        <form action="{{route('home')}}" method="get">
+                        @csrf
+                            <input type="text" placeholder="Search" name="searchBy" />
+                            <button type="submit"><i class="pe-7s-search"></i></button>
                         </form>
                     </div>
                     <!-- mobile search start -->
@@ -263,6 +274,8 @@
         <div class="offcanvas-overlay"></div>
         <!-- offcanvas overlay end -->
         <!-- OffCanvas Wishlist Start -->
+        @auth
+        @if($wishlist = Auth::user()->wishlists->where("status","1")->first())
         <div id="offcanvas-wishlist" class="offcanvas offcanvas-wishlist">
             <div class="inner">
                 <div class="head">
@@ -271,39 +284,48 @@
                 </div>
                 <div class="body customScroll">
                     <ul class="minicart-product-list">
+                        @foreach($wishlist->products as $product)
                         <li>
-                            <a href="single-product.html" class="image"><img src="{{asset('website_files/images/product-image/1.webp')}}" alt="Cart product Image"></a>
+                            <a href="single-product.html" class="image"><img src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[0]->image)}}" alt="Cart product Image"></a>
                             <div class="content">
-                                <a href="single-product.html" class="title">Modern Smart Phone</a>
-                                <span class="quantity-price">1 x <span class="amount">$21.86</span></span>
-                                <a href="#" class="remove">×</a>
+                                <a href="single-product.html" class="title">{{$product->name}}</a>
+                                <span class="quantity-price"> <span class="amount">EGP {{number_format($product->sale_price)}}</span></span>
+                                <!-- <a href="#" class="remove">×</a> -->
                             </div>
                         </li>
-                        <li>
-                            <a href="single-product.html" class="image"><img src="{{asset('website_files/images/product-image/2.webp')}}" alt="Cart product Image"></a>
-                            <div class="content">
-                                <a href="single-product.html" class="title">Bluetooth Headphone</a>
-                                <span class="quantity-price">1 x <span class="amount">$13.28</span></span>
-                                <a href="#" class="remove">×</a>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="single-product.html" class="image"><img src="{{asset('website_files/images/product-image/3.webp')}}" alt="Cart product Image"></a>
-                            <div class="content">
-                                <a href="single-product.html" class="title">Smart Music Box</a>
-                                <span class="quantity-price">1 x <span class="amount">$17.34</span></span>
-                                <a href="#" class="remove">×</a>
-                            </div>
-                        </li>
+                      @endforeach
                     </ul>
                 </div>
                 <div class="foot">
                     <div class="buttons">
-                        <a href="wishlist.html" class="btn btn-dark btn-hover-primary mt-30px">view wishlist</a>
+                        <a href="{{route('wishlist.items')}}" class="btn btn-dark btn-hover-primary mt-30px">view wishlist</a>
                     </div>
                 </div>
             </div>
         </div>
+        @endif
+
+        @endauth
+        @guest
+        <div id="offcanvas-wishlist" class="offcanvas offcanvas-wishlist">
+                    <div class="inner">
+                        <div class="head">
+                            <span class="title">Wishlist</span>
+                            <button class="offcanvas-close">×</button>
+                        </div>
+                        <div class="body customScroll">
+                        
+                        </div>
+                        <div class="foot">
+                            <!-- <div class="buttons mt-30px">
+                                <a href="cart.html" class="btn btn-dark btn-hover-primary mb-30px">view cart</a>
+                                <a href="checkout.html" class="btn btn-outline-dark current-btn">checkout</a>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+         @endguest
         <!-- OffCanvas Wishlist End -->
         <!-- OffCanvas Cart Start -->
         @auth
@@ -344,7 +366,23 @@
         </div>
         
         @endif
-
+        <div id="offcanvas-cart" class="offcanvas offcanvas-cart">
+            <div class="inner">
+                <div class="head">
+                    <span class="title">Cart</span>
+                    <button class="offcanvas-close">×</button>
+                </div>
+                <div class="body customScroll">
+                   
+                </div>
+                <div class="foot">
+                    <div class="buttons mt-30px">
+                        <!-- <a href="{{route('cart.items')}}" class="btn btn-dark btn-hover-primary mb-30px">view cart</a>
+                        <a href="{{route('order.checkout')}}" class="btn btn-outline-dark current-btn">checkout</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
         @endauth
         @guest
         <div id="offcanvas-cart" class="offcanvas offcanvas-cart">

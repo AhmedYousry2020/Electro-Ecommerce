@@ -6,6 +6,8 @@ use App\Http\Controllers\UserControllers\ProductController;
 use App\Http\Controllers\UserControllers\CartController;
 use App\Http\Controllers\UserControllers\AuthController;
 use App\Http\Controllers\UserControllers\OrderController;
+use App\Http\Controllers\UserControllers\WishListController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,9 +47,11 @@ Route::group([],function(){
 
     Route::post('/addToCart',[CartController::class,'AddItemToCart'])->name('AddToCart')->middleware("auth:web");
     Route::get('/viewCartItem',[CartController::class,'index'])->name("cart.items")->middleware("auth:web");
-    Route::put('/updateCartItems',[CartController::class,'UpdateCartItems'])->name("UpdateCartItems")->middleware("auth:web");
+    Route::post('/updateCartItems',[CartController::class,'UpdateCartItems'])->name("UpdateCartItems")->middleware("auth:web");
+   
+    Route::post('/addToWishList',[WishListController::class,'AddItemToWishList'])->name('AddItemToWishList')->middleware("auth:web");
+    Route::get('/viewWishListItem',[WishListController::class,'index'])->name("wishlist.items")->middleware("auth:web");
 
-    
     Route::delete('/product/{id}/reomveItemFromCart',[CartController::class,'RemoveItemFromCart'])->name('RemoveItemFromCart')->middleware("auth:web");
   
     Route::delete('/clearCart',[CartController::class,'RemoveCart'])->name("cart.remove")->middleware("auth:web");

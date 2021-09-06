@@ -39,7 +39,7 @@
                                     </thead>
                                     <form id ="updateCartItems-form" action="{{route('UpdateCartItems')}}" method="post" style="display: none;">
                                     @csrf
-                                    {{ method_field("put") }}
+                                   
                                     <tbody> 
                                        @foreach($cart->products as $product)
                                         <tr>
@@ -55,22 +55,22 @@
                                             </td>
                                              <input type="hidden" name="product_ids[]" value="{{$product->id}}">
                                              <input type="hidden" class ="quantity-{{$product->id}}" name="quantities[]"  value="{{$product->pivot->quantity}}">
-                                             </form>
+                                             
                                             <td class="product-subtotal">{{number_format($product->sale_price * $product->pivot->quantity)}}</td>
                                             <td class="product-remove">
                                                 <a href="{{route('product.details',$product->id)}}"><i class="fa fa-pencil"></i></a>
-                                                <form id ="removeItemFromCart-form-{{$product->id}}" action="{{route('RemoveItemFromCart',$product->id)}}" method="post" style="display: none;">
+                                                <!-- <form id ="removeItemFromCart-form-{{$product->id}}" action="{{route('RemoveItemFromCart',$product->id)}}" method="post" style="display: none;">
                                                 @csrf
                                                 {{ method_field("delete") }}
-                                                </form>
-                                                <a onclick="event.preventDefault();
-                                                     document.getElementById('removeItemFromCart-form-{{$product->id}}').submit();"><i class="fa fa-times"></i></a>
+                                                </form> -->
+                                                <a id="remove-item" data-id="{{$product->id}}" data-method="delete" data-url="{{route('RemoveItemFromCart',$product->id)}}"><i class="fa fa-times"></i></a>
                                             </td>
                                         </tr>
                                       @endforeach 
                                     </tbody>
                                     
                                 </table>
+                                </form>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -214,6 +214,31 @@ $(document).on('click', '.dec', function (event) {
     var id = $(this).parent('.cart-plus-minus').find(".cart-plus-minus-box").data("id"); 
        $('.quantity-'+id).val($(this).parent('.cart-plus-minus').find(".cart-plus-minus-box").val());
           
+});
+
+$('#remove-item').on('click',function(e){
+e.preventDefault();
+
+var url = $(this).data('url');
+var method = $(this).data('method');
+
+$.ajax({
+url:url,
+type:'DELETE',
+headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+success: function(){
+    location.reload()
+},
+fail: function(xhr, textStatus, errorThrown){
+    location.reload()
+    }
+});
+setTimeout(() => {
+    location.reload();
+}, 300);
+
 });
 });
 

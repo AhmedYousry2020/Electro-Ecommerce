@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Order;
 use App\Models\Cart;
+use App\Models\Wishlist;
 
 class User extends Authenticatable
 {
@@ -51,5 +52,9 @@ class User extends Authenticatable
     public function carts(){
 
         return $this->hasMany(Cart::class);
+    }
+    public function wishlists(){
+
+        return $this->hasMany(Wishlist::class);
     }
 }

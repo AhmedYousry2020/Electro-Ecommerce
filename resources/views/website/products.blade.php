@@ -99,7 +99,14 @@
                                                 <button title="Add To Cart" class="action add-to-cart" onclick="event.preventDefault();
                                                      document.getElementById('AddToCart-form-{{$product->id}}').submit();" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
                                                     class="pe-7s-shopbag"></i></button>
-                                                            <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
+
+                                                    <form id="AddToWishList-form-{{$product->id}}" action="{{route('AddItemToWhishList')}}" method="POST">
+                                                  @csrf 
+                                        
+                                                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                    </form> 
+                                                            <button class="action wishlist" title="Wishlist" onclick="event.preventDefault();
+                                                     document.getElementById('AddToWishList-form-{{$product->id}}').submit();" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
                                                                     class="pe-7s-like"></i></button>
                                                                     <a href="{{route('product.details',$product->id)}}" title="Quick view" class="action quickview" data-link-action="quickview" ><i class="pe-7s-look"></i></a>
 
