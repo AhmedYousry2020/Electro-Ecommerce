@@ -1,15 +1,43 @@
 @extends("website.layouts.app")
 @section("content")
+<style>
+.page-item.active .page-link{
+    z-index: 3;
+color: #fff;
+background-color: #0d6efd;
+border-color: #0d6efd;
+color: #266bf9;
+border-color: #266bf9;
+background: #fff;
+padding: 0;
+height: 50px;
+background: #fff;
+display: inline-block;
+width: 50px;
+border-radius: 5px;
+text-align: center;
+vertical-align: top;
+font-size: 18px;
+-webkit-transition: all .3s ease 0s;
+transition: all .3s ease 0s;
+border-color: #266bf9;
+font-weight: 600;
+line-height: 50px;
+outline: 0;
+border-width: 2px;
+border-style: solid;
+} 
 
+</style>
 <!-- breadcrumb-area start -->
 <div class="breadcrumb-area">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-12 text-center">
-                        <h2 class="breadcrumb-title">Products</h2>
+                        <h2 class="breadcrumb-title">Smart devices</h2>
                         <!-- breadcrumb-list start -->
                         <ul class="breadcrumb-list">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                             <li class="breadcrumb-item active">Products</li>
                         </ul>
                         <!-- breadcrumb-list end -->
@@ -27,7 +55,7 @@
                     <div class="col-md-12">
                         <!-- Shop Top Area Start -->
                         <div class="shop-top-bar d-flex">
-                            <p class="compare-product"> <span>12</span> Product Found of <span>30</span></p>
+                            <p class="compare-product"> <span>4</span> Product Found of <span>4</span></p>
                             <!-- Left Side End -->
                             <div class="shop-tab nav">
                                 <!-- <button class="active" data-bs-target="#shop-grid" data-bs-toggle="tab">
@@ -75,7 +103,7 @@
                                                         <span class="new">New</span>
                                                         </span>
                                                         <div class="thumb">
-                                                            <a href="single-product.html" class="image">
+                                                            <a href="{{route('product.details',$product->id)}}" class="image">
                                                                 <img src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[0]->image)}}" alt="Product" />
                                                                 <img class="hover-image" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[1]->image)}}" alt="Product" />
                                                             </a>
@@ -96,15 +124,16 @@
                                         
                                         <input type="hidden" name="product_id" value="{{$product->id}}">
                                       </form>
+                                      <form id="AddToWishList-form-{{$product->id}}" action="{{route('AddItemToWishList')}}" method="POST" style="display:none">
+                                                  @csrf 
+                                        
+                                                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                    </form>
                                                 <button title="Add To Cart" class="action add-to-cart" onclick="event.preventDefault();
                                                      document.getElementById('AddToCart-form-{{$product->id}}').submit();" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
                                                     class="pe-7s-shopbag"></i></button>
 
-                                                    <form id="AddToWishList-form-{{$product->id}}" action="{{route('AddItemToWhishList')}}" method="POST">
-                                                  @csrf 
-                                        
-                                                        <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                    </form> 
+                                                  
                                                             <button class="action wishlist" title="Wishlist" onclick="event.preventDefault();
                                                      document.getElementById('AddToWishList-form-{{$product->id}}').submit();" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
                                                                     class="pe-7s-like"></i></button>
@@ -126,17 +155,10 @@
                             <!--  Pagination Area Start -->
                             <div class="pro-pagination-style text-center text-lg-end" data-aos="fade-up" data-aos-delay="200">
                                 <div class="pages">
-                                    <ul>
-                                        <li class="li"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a>
-                                        </li>
-                                        <li class="li"><a class="page-link" href="#">1</a></li>
-                                        <li class="li"><a class="page-link active" href="#">2</a></li>
-                                        <li class="li"><a class="page-link" href="#">3</a></li>
-                                        <li class="li"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                                        </li>
-                                    </ul>
+                                {{ $products->appends(request()->query())->links('pagination::bootstrap-4') }}
                                 </div>
                             </div>
+                            
                             <!--  Pagination Area End -->
                         </div>
                         <!-- Shop Bottom Area End -->

@@ -15,7 +15,7 @@
                                         <h2 class="title-1">Your Home <br>
                                         Smart Devices & <br>
                                          Best Solution </h2>
-                                        <a href="shop-left-sidebar.html" class="btn btn-primary text-capitalize">Shop All Devices</a>
+                                        <a href="#" class="btn btn-primary text-capitalize">Shop All Devices</a>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center position-relative align-items-end">
@@ -38,7 +38,7 @@
                                         <h2 class="title-1">Your Home <br>
                                         Smart Devices & <br>
                                          Best Solution </h2>
-                                        <a href="shop-left-sidebar.html" class="btn btn-primary text-capitalize">Shop All Devices</a>
+                                        <a href="#" class="btn btn-primary text-capitalize">Shop All Devices</a>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center position-relative align-items-end">
@@ -82,7 +82,7 @@
                                         <span class="new">New</span>
                                     </span>
                                     <div class="thumb">
-                                        <a href="single-product.html" class="image">
+                                        <a href="{{route('product.details',$product->id)}}" class="image">
                                             <img src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[0]->image)}}" alt="Product" />
                                            
                                             <img class="hover-image" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[1]->image)}}" alt="Product" />
@@ -132,6 +132,132 @@
             </div>
         </div>
         <!-- Product Area End -->
+         <!-- Testimonial area start -->
+         <div class="trstimonial-area pt-100px pb-100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title text-center m-0">
+                            <h2 class="title">Client Feedback</h2>
+                            <p>There are many variations of passages of Lorem Ipsum available</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Swiper -->
+                        <div class="swiper-container content-top slider-nav-style-1">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="testi-inner">
+                                        <div class="testi-content">
+                                            <p>Lorem ipsum dolor sit amel adipiscing elit, sed do eiusll tempor incididunt ut laborj et dolore magna sed do eiusll tempor dolore.
+                                            </p>
+                                        </div>
+                                        <div class="testi-author">
+                                            <div class="author-image">
+                                                <img class="img-responsive" src="{{asset('website_files/images/testimonial/1.webp')}}" alt="">
+                                            </div>
+                                            <div class="author-name">
+                                                <h4 class="name">Regan Rosen<span>Client</span></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="testi-inner">
+                                        <div class="testi-content">
+                                            <p>Lorem ipsum dolor sit amel adipiscing elit, sed do eiusll tempor incididunt ut laborj et dolore magna sed do eiusll tempor dolore.
+                                            </p>
+                                        </div>
+                                        <div class="testi-author">
+                                            <div class="author-image">
+                                                <img class="img-responsive" src="{{asset('website_files/images/testimonial/1.webp')}}" alt="">
+                                            </div>
+                                            <div class="author-name">
+                                                <h4 class="name">Regan Rosen<span>Client</span></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="testi-inner">
+                                        <div class="testi-content">
+                                            <p>Lorem ipsum dolor sit amel adipiscing elit, sed do eiusll tempor incididunt ut laborj et dolore magna sed do eiusll tempor dolore.
+                                            </p>
+                                        </div>
+                                        <div class="testi-author">
+                                            <div class="author-image">
+                                                <img class="img-responsive" src="{{asset('website_files/images/testimonial/1.webp')}}" alt="">
+                                            </div>
+                                            <div class="author-name">
+                                                <h4 class="name">Regan Rosen<span>Client</span></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="testi-inner">
+                                        <div class="testi-content">
+                                            <p>Lorem ipsum dolor sit amel adipiscing elit, sed do eiusll tempor incididunt ut laborj et dolore magna sed do eiusll tempor dolore.
+                                            </p>
+                                        </div>
+                                        <div class="testi-author">
+                                            <div class="author-image">
+                                                <img class="img-responsive" src="{{asset('website_files/images/testimonial/1.webp')}}" alt="">
+                                            </div>
+                                            <div class="author-name">
+                                                <h4 class="name">Regan Rosen<span>Client</span></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-buttons">
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial area end-->
+          <!-- Fashion Area Start -->
+          <div class="fashion-area" data-bg-image="{{asset('website_files/images/fashion/fashion-bg.webp')}}">
+            <div class="container h-100">
+                <div class="row justify-content-center align-items-center h-100">
+                    <div class="col-12 text-center">
+                        <h2 class="title"> <span>Smart Fashion</span> With Smart Devices </h2>
+                        <a href="#" class="btn btn-primary text-capitalize m-auto">Shop All Devices</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fashion Area End -->
+        <!-- Brand area start -->
+        <div class="brand-area pt-100px pb-100px">
+            <div class="container">
+                <div class="brand-slider swiper-container">
+                    <div class="swiper-wrapper align-items-center">
+                        <div class="swiper-slide brand-slider-item text-center">
+                            <a href="#"><img class=" img-fluid" src="{{asset('website_files/images/partner/1.png')}}" alt="" /></a>
+                        </div>
+                        <div class="swiper-slide brand-slider-item text-center">
+                            <a href="#"><img class=" img-fluid" src="{{asset('website_files/images/partner/1.png')}}" alt="" /></a>
+                        </div>
+                        <div class="swiper-slide brand-slider-item text-center">
+                            <a href="#"><img class=" img-fluid" src="{{asset('website_files/images/partner/1.png')}}" alt="" /></a>
+                        </div>
+                        <div class="swiper-slide brand-slider-item text-center">
+                            <a href="#"><img class=" img-fluid" src="{{asset('website_files/images/partner/1.png')}}" alt="" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Brand area end -->
  <!-- Modal Cart-->
   <!-- <div class="modal customize-class fade" id="exampleModal-Cart" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

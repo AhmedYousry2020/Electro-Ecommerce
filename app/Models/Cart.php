@@ -20,4 +20,15 @@ class Cart extends Model
 
         return $this->belongsToMany(Product::class,'product_cart')->withPivot("quantity");
     }
+
+    public function hasProduct($id){
+    
+        $objectsArray = [];
+        foreach($this->products as $product){
+           array_push($objectsArray,$product->id);
+        }
+        return in_array($id,$objectsArray);
+       
+    }
+    
 }

@@ -1,14 +1,22 @@
 @extends("website.layouts.app")
 @section("content")
+<style>
+.breadcrumb-area .breadcrumb-title {
+    color: #000
+} 
+.breadcrumb-list li a{
+    color: #000
+}
+</style>
 <!-- breadcrumb-area start -->
-<div class="breadcrumb-area">
-            <div class="container">
+<div class="breadcrumb-area" data-bg-image="{{asset('website_files/images/breadcrunb-bg.webp')}}">
+            <div class="container" >
                 <div class="row align-items-center justify-content-center">
                     <div class="col-12 text-center">
                         <h2 class="breadcrumb-title">Cart</h2>
                         <!-- breadcrumb-list start -->
                         <ul class="breadcrumb-list">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                             <li class="breadcrumb-item active">Cart</li>
                         </ul>
                         <!-- breadcrumb-list end -->
@@ -47,7 +55,7 @@
                                                 <a href="#"><img class="img-responsive ml-15px" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[0]->image)}}" alt="" /></a>
                                             </td>
                                             <td class="product-name"><a href="#">{{$product->name}}</a></td>
-                                            <td class="product-price-cart"><span class="amount">{{number_format($product->sale_price)}}</span></td>
+                                            <td class="product-price-cart"><span class="amount">EGP {{number_format($product->sale_price)}}</span></td>
                                             <td class="product-quantity">
                                                 <div class="cart-plus-minus" >
                                                     <input class="cart-plus-minus-box p-m-{{$product->id}}" type="text" data-id="{{$product->id}}" name="qtybutton" value="{{$product->pivot->quantity}}" />
@@ -55,15 +63,13 @@
                                             </td>
                                              <input type="hidden" name="product_ids[]" value="{{$product->id}}">
                                              <input type="hidden" class ="quantity-{{$product->id}}" name="quantities[]"  value="{{$product->pivot->quantity}}">
-                                             
-                                            <td class="product-subtotal">{{number_format($product->sale_price * $product->pivot->quantity)}}</td>
+                                            
+                                            <td class="product-subtotal">EGP {{number_format($product->sale_price * $product->pivot->quantity)}}</td>
                                             <td class="product-remove">
                                                 <a href="{{route('product.details',$product->id)}}"><i class="fa fa-pencil"></i></a>
-                                                <!-- <form id ="removeItemFromCart-form-{{$product->id}}" action="{{route('RemoveItemFromCart',$product->id)}}" method="post" style="display: none;">
-                                                @csrf
-                                                {{ method_field("delete") }}
-                                                </form> -->
-                                                <a id="remove-item" data-id="{{$product->id}}" data-method="delete" data-url="{{route('RemoveItemFromCart',$product->id)}}"><i class="fa fa-times"></i></a>
+                                                
+                                               
+                                                <a class="remove-item" data-id="{{$product->id}}" data-method="delete" ><i class="fa fa-times"></i></a>
                                             </td>
                                         </tr>
                                       @endforeach 
@@ -161,11 +167,11 @@
                                     <div class="total-shipping">
                                         <h5>Total shipping</h5>
                                         <ul>
-                                            <li><input type="checkbox" /> Standard <span>$20.00</span></li>
-                                            <li><input type="checkbox" /> Express <span>$30.00</span></li>
+                                            <li><input type="checkbox" /> Standard <span>EGP 20.00</span></li>
+                                            <li><input type="checkbox" /> Express <span>EGP 30.00</span></li>
                                         </ul>
                                     </div>
-                                    <h4 class="grand-totall-title">Grand Total <span>$260.00</span></h4>
+                                    <h4 class="grand-totall-title">Grand Total <span>EGP {{number_format($cart->total_price)}} </span></h4>
                                     <a href="{{route('order.checkout')}}">Proceed to Checkout</a>
                                 </div>
                             </div>
@@ -216,14 +222,15 @@ $(document).on('click', '.dec', function (event) {
           
 });
 
-$('#remove-item').on('click',function(e){
+$('.remove-item').on('click',function(e){
 e.preventDefault();
 
 var url = $(this).data('url');
-var method = $(this).data('method');
 
+var method = $(this).data('method');
+var id = $(this).data("id");
 $.ajax({
-url:url,
+url:'product/'+id+'/reomveItemFromCart',
 type:'DELETE',
 headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -239,7 +246,7 @@ setTimeout(() => {
     location.reload();
 }, 300);
 
-});
+ });
 });
 
 

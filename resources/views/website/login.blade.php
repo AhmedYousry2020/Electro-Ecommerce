@@ -9,7 +9,7 @@
                         <h2 class="breadcrumb-title">Login</h2>
                         <!-- breadcrumb-list start -->
                         <ul class="breadcrumb-list">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                             <li class="breadcrumb-item active">Login</li>
                         </ul>
                         <!-- breadcrumb-list end -->

@@ -101,10 +101,11 @@
 
                             <img src="{{asset('dashboard_files/dist/img/default-150x150.png')}}" style="width:100px" class="img-thumbnail image-preview" alt="">
                   </div>
-
+ 
+                  
                   <div class="form-group col-md-3 img">
                              <label>Image3</label>
-                             <input class="form-control image" type="file" name="image[]">
+                             <input class="form-control image-" type="file" name="image[]">
                          </div>
 
                          <div class="form-group">
@@ -136,6 +137,10 @@
                   <!-- /.input group -->
                 </div>
                 <!-- /.form group -->
+                <div class="form-group">
+                    <label for="exampleInputEmail1">SKU</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Product SKU" name="SKU">
+                  </div>
                <!-- /.card-body -->
                </div>  
                 <div class="card-footer">

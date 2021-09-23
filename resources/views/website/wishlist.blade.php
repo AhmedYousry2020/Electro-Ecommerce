@@ -1,14 +1,22 @@
 @extends("website.layouts.app")
 @section("content")
+<style>
+.breadcrumb-area .breadcrumb-title {
+    color: #000
+} 
+.breadcrumb-list li a{
+    color: #000
+}
+</style>
 <!-- breadcrumb-area start -->
-<div class="breadcrumb-area">
+<div class="breadcrumb-area" data-bg-image="{{asset('website_files/images/breadcrunb-bg.webp')}}">
             <div class="container">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-12 text-center">
                         <h2 class="breadcrumb-title">WishList</h2>
                         <!-- breadcrumb-list start -->
                         <ul class="breadcrumb-list">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                             <li class="breadcrumb-item active">WishList</li>
                         </ul>
                         <!-- breadcrumb-list end -->

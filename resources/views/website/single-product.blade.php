@@ -9,7 +9,7 @@
                         <h2 class="breadcrumb-title">{{$product->name}}</h2>
                         <!-- breadcrumb-list start -->
                         <ul class="breadcrumb-list">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
                             <li class="breadcrumb-item active">Product</li>
                         </ul>
                         <!-- breadcrumb-list end -->
@@ -75,7 +75,7 @@
                                 <span>SKU:</span>
                                 <ul class="d-flex">
                                     <li>
-                                        <a href="#">Ch-256xl</a>
+                                        <a href="#">{{$product->SKU}}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -116,7 +116,13 @@
                                         Cart</button>
                                 </div>
                                 <div class="pro-details-compare-wishlist pro-details-wishlist ">
-                                    <a href="wishlist.html"><i class="pe-7s-like"></i></a>
+                                <form id="AddToWishList-form" action="{{route('AddItemToWishList')}}" method="POST" style="display:none">
+                                  @csrf 
+                                        
+                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                </form>
+                                    <a onclick="event.preventDefault();
+                                                     document.getElementById('AddToWishList-form').submit();"><i class="pe-7s-like"></i></a>
                                 </div>
                                 <div class="pro-details-compare-wishlist pro-details-wishlist ">
                                     <a href="compare.html"><i class="pe-7s-refresh-2"></i></a>

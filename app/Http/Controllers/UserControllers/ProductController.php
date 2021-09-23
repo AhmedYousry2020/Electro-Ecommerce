@@ -10,7 +10,7 @@ class ProductController extends Controller
 
     public function GetProducts(Request $request){
        
-        $products = Product::where("category_id",$request->category_id)->get();
+        $products = Product::where("category_id",$request->category_id)->paginate(4);
         
         return view("website.products",compact("products"));
 

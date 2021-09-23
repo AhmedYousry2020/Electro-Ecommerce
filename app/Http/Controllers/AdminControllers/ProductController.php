@@ -53,6 +53,7 @@ class ProductController extends Controller
             "sale_price"=>"required",
             "stock"=>"required|integer",
             "color"=>"required|string",
+            "SKU"=>"required"
 
             
         ]);
@@ -127,12 +128,13 @@ class ProductController extends Controller
             "sale_price"=>"required",
             "stock"=>"required|integer",
             "color"=>"required|string",
+            "SKU"=>"required"
 
         ]);
 
         if($validator->fails()){
 
-            return redirect()->route("dashboard.categories.edit")->withErrors($validator);
+            return redirect()->route("dashboard.products.edit")->withErrors($validator);
         }
         $requestAll = $validator->validated();
 

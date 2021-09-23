@@ -43,7 +43,7 @@ class AuthController extends Controller
        $user = User::create($requestAll);
 
        if($user){
-        return redirect('/home');
+        return redirect()->route('loginForm')->with("success","created sucessfully, please log in to continue");
        }
   
 

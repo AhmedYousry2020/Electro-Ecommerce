@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
         $table->string("size")->nullable();
         $table->string("weight")->nullable();
         $table->string("color")->nullable();
+        $table->string("SKU")->nullable();
         $table->timestamps();
         $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
       
