@@ -4569,7 +4569,7 @@ body.offcanvas-open {
     - Breadvrumb  
 =================================*/
 .breadcrumb-area {
-  /* background-image: url(http://127.0.0.1:8000/website_files/images/hero/bg/hero-bg-1.webp); */
+   background-image: url(http://127.0.0.1:8000/website_files/images/about/breadcrunb-bg.webp); 
   background-color: black;
   background-repeat: no-repeat;
   background-position: center center;
@@ -4605,7 +4605,7 @@ body.offcanvas-open {
   font-weight: 400;
   text-transform: capitalize;
   font-size: 60px;
-  color: white;
+  color: #000;;
   margin: 0;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -4632,7 +4632,7 @@ body.offcanvas-open {
   }
 }
 .breadcrumb-list li a {
-  color: white;
+  color: #000;
 }
 .breadcrumb-list li a:hover {
   color: #266bf9;

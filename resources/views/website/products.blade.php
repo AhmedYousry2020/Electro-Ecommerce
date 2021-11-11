@@ -55,7 +55,7 @@ border-style: solid;
                     <div class="col-md-12">
                         <!-- Shop Top Area Start -->
                         <div class="shop-top-bar d-flex">
-                            <p class="compare-product"> <span>4</span> Product Found of <span>4</span></p>
+                            <p class="compare-product"> <span>{{$products->perPage()}}</span> Product Found of <span>{{$products->total()}}</span></p>
                             <!-- Left Side End -->
                             <div class="shop-tab nav">
                                 <!-- <button class="active" data-bs-target="#shop-grid" data-bs-toggle="tab">

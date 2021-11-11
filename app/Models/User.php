@@ -10,6 +10,9 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Order;
 use App\Models\Cart;
 use App\Models\Wishlist;
+use App\Models\UserAddress;
+use App\Models\UserPhone;
+
 
 class User extends Authenticatable
 {
@@ -57,4 +60,15 @@ class User extends Authenticatable
 
         return $this->hasMany(Wishlist::class);
     }
+    public function addresses(){
+
+        return $this->hasMany(UserAddress::class);
+    }
+
+    public function phones(){
+
+        return $this->hasMany(UserPhone::class);
+    }
+
+
 }

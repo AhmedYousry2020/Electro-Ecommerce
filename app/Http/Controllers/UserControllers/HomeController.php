@@ -9,6 +9,8 @@ use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use App\Models\UserAddress;
+
 class HomeController extends Controller
 {
     public function index(Request $request){
@@ -27,9 +29,24 @@ class HomeController extends Controller
 
         $user = Auth::user();
         $orders = Order::where("user_id",$user->id)->get();
+        $addresses = $user->addresses()->get();
+        $phones = $user->phones()->get();
 
-        return view("website.my-account",compact("orders"));
+
+        return view("website.my-account",compact("orders","addresses","phones"));
     }
 
+    public function autocomplete(Request $request){
+        $data =  Product::select("id","name","sale_price")
+        ->where('name','like','%'.$request->input('searchBy').'%')->get();
+         foreach($data as $item){
+          $image = $item->images()->first();
+          $item->image =$image->image;  
+          $item->link = route('product.details',$item->id);
+          $item->sale_price = number_format($item->sale_price,2);  
+        }
+        
+        return response()->json($data); 
 
+    }
 }

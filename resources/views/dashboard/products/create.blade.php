@@ -61,56 +61,56 @@
 
                   <div class="form-group">
                     <label for="exampleInputEmail1">Purchase_price</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="5000" name="purchase_price">
+                    <input type="number" class="form-control" id="exampleInputEmail1" placeholder="{{ __("e.g 20") }}" step="0.01" required="" min="0"  name="purchase_price">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Sale_price</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="6500" name="sale_price">
+                    <input type="number" class="form-control" id="exampleInputEmail1" placeholder="{{ __("e.g 20") }}" step="0.01" required="" min="0" name="sale_price">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Stock</label>
-                    <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter stock" name="stock">
+                    <input type="number" class="form-control" id="exampleInputEmail1" placeholder="{{ __("10") }}" step="0.01" required="" min="0" name="stock">
                   </div>
                  
                 
                  
                   <div class="form-group col-md-3 img">
                              <label>Image</label>
-                             <input class="form-control image" type="file" name="image[]">
+                             <input class="form-control image-1" type="file" name="image[]">
                          </div>
 
                          <div class="form-group">
 
-                            <img src="{{asset('dashboard_files/dist/img/default-150x150.png')}}" style="width:100px" class="img-thumbnail image-preview" alt="">
+                            <img src="{{asset('dashboard_files/dist/img/default-150x150.png')}}" style="width:100px" class="img-thumbnail image-preview-1" alt="">
                   </div>
                   <div class="form-group col-md-3 img">
                              <label>Image1</label>
-                             <input class="form-control image" type="file" name="image[]">
+                             <input class="form-control image-2" type="file" name="image[]">
                          </div>
 
                          <div class="form-group">
 
-                            <img src="{{asset('dashboard_files/dist/img/default-150x150.png')}}" style="width:100px" class="img-thumbnail image-preview" alt="">
+                            <img src="{{asset('dashboard_files/dist/img/default-150x150.png')}}" style="width:100px" class="img-thumbnail image-preview-2" alt="">
                   </div>
                   <div class="form-group col-md-3 img" >
                              <label>Image2</label>
-                             <input class="form-control image" type="file" name="image[]">
+                             <input class="form-control image-3" type="file" name="image[]">
                          </div>
 
                          <div class="form-group">
 
-                            <img src="{{asset('dashboard_files/dist/img/default-150x150.png')}}" style="width:100px" class="img-thumbnail image-preview" alt="">
+                            <img src="{{asset('dashboard_files/dist/img/default-150x150.png')}}" style="width:100px" class="img-thumbnail image-preview-3" alt="">
                   </div>
  
                   
                   <div class="form-group col-md-3 img">
                              <label>Image3</label>
-                             <input class="form-control image-" type="file" name="image[]">
+                             <input class="form-control image-4" type="file" name="image[]">
                          </div>
 
                          <div class="form-group">
 
-                            <img src="{{asset('dashboard_files/dist/img/default-150x150.png')}}" style="width:100px" class="img-thumbnail image-preview" alt="">
+                            <img src="{{asset('dashboard_files/dist/img/default-150x150.png')}}" style="width:100px" class="img-thumbnail image-preview-4" alt="">
                   </div>
 
              
@@ -158,3 +158,4 @@
     <!-- /.content -->
    
 @endsection
+

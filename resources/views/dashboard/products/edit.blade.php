@@ -58,16 +58,18 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Purchase_price</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="5000" name="purchase_price" value="{{$product->purchase_price}}">
+                    <input type="number" class="form-control" id="exampleInputEmail1" placeholder="{{ __("e.g 20") }}" step="0.01" required="" min="0" name="purchase_price" value="{{$product->purchase_price}}">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Sale_price</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="6500" name="sale_price" value="{{$product->sale_price}}">
+                    <input type="number" class="form-control" id="exampleInputEmail1" placeholder="{{ __("e.g 20") }}" step="0.01" required="" min="0" name="sale_price" value="{{$product->sale_price}}">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Stock</label>
-                    <input type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter stock" name="stock" value="{{$product->stock}}">
+                    <input type="number" class="form-control" id="exampleInputEmail1" placeholder="{{ __("10") }}" step="0.01" required="" min="0" name="stock" value="{{$product->stock}}">
                   </div>
+                 
+
                     <div class="form-group">
                       <label>Category</label>
                       <select class="form-control select2bs4" style="width: 100%;" name="category_id">

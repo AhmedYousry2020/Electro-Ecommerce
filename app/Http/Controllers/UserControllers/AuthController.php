@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Gloudemans\Shoppingcart\Facades\Cart as CartSession;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 class AuthController extends Controller
@@ -71,6 +72,8 @@ class AuthController extends Controller
        ];
 
        if(Auth::attempt($credentials)){
+
+        checkSessionCart();
         return redirect('/home');
 
        }else{
@@ -86,4 +89,5 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('loginForm');
     }
+   
 }

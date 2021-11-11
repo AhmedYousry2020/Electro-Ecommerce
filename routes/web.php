@@ -7,6 +7,7 @@ use App\Http\Controllers\UserControllers\CartController;
 use App\Http\Controllers\UserControllers\AuthController;
 use App\Http\Controllers\UserControllers\OrderController;
 use App\Http\Controllers\UserControllers\WishListController;
+use App\Http\Controllers\UserControllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,20 +45,24 @@ Route::group([],function(){
     Route::get('/product/{id}/details',[ProductController::class,'GetSingleProductDetails'])->name("product.details");
     Route::get('/products',[ProductController::class,'GetProducts'])->name("products");
   
+    Route::get('/autocomplete',[HomeController::class,'autocomplete'])->name('autocomplete');
 
-    Route::post('/addToCart',[CartController::class,'AddItemToCart'])->name('AddToCart')->middleware("auth:web");
-    Route::get('/viewCartItem',[CartController::class,'index'])->name("cart.items")->middleware("auth:web");
-    Route::post('/updateCartItems',[CartController::class,'UpdateCartItems'])->name("UpdateCartItems")->middleware("auth:web");
-   
+
+    Route::post('/addToCart',[CartController::class,'AddItemToCart'])->name('AddToCart');
+    Route::get('/viewCartItem',[CartController::class,'index'])->name("cart.items");
+    Route::post('/updateCartItems',[CartController::class,'UpdateCartItems'])->name("UpdateCartItems");
+    Route::delete('/product/{id}/reomveItemFromCart',[CartController::class,'RemoveItemFromCart'])->name('RemoveItemFromCart');
+    Route::delete('/clearCart',[CartController::class,'RemoveCart'])->name("cart.remove");
+
     Route::post('/addToWishList',[WishListController::class,'AddItemToWishList'])->name('AddItemToWishList')->middleware("auth:web");
     Route::get('/viewWishListItem',[WishListController::class,'index'])->name("wishlist.items")->middleware("auth:web");
 
-    Route::delete('/product/{id}/reomveItemFromCart',[CartController::class,'RemoveItemFromCart'])->name('RemoveItemFromCart')->middleware("auth:web");
   
-    Route::delete('/clearCart',[CartController::class,'RemoveCart'])->name("cart.remove")->middleware("auth:web");
-
 
     Route::get("/my-account",[HomeController::class,'AccountDashboard'])->name("account.dashboard")->middleware("auth");
+    Route::post("/my-account",[AccountController::class,'store'])->name("account.dashboard.store")->middleware("auth");
+    Route::post("/my-account/change-password",[AccountController::class,'change_password'])->name("account.dashboard.change_password")->middleware("auth");
+
     Route::get("/order/checkout",[OrderController::class,'checkout'])->name("order.checkout")->middleware("auth");
     
     Route::post("/order/store",[OrderController::class,'AddOrder'])->name("order.store")->middleware("auth");

@@ -11,7 +11,7 @@ class ProductController extends Controller
     public function GetProducts(Request $request){
        
         $products = Product::where("category_id",$request->category_id)->paginate(4);
-        
+    
         return view("website.products",compact("products"));
 
     }
@@ -19,7 +19,9 @@ class ProductController extends Controller
 
     public function GetSingleProductDetails($id){
         $product = Product::findOrFail($id);
-        return view("website/single-product",compact("product"));
+        $products = Product::where("category_id",$product->category_id)->get();
+     
+        return view("website/single-product",compact("product","products"));
         
     }
 }

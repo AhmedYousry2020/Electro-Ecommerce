@@ -232,23 +232,65 @@
     });
   });
 </script>
-<!-- <script>
+<script>
 // image preview
-$(".image").change(function () {
+$(".image-1").change(function () {
 
  if (this.files && this.files[0]) {
     var reader = new FileReader();
 
     reader.onload = function (e) {
       
-        $('.image-preview').attr('src', e.target.result);
+        $('.image-preview-1').attr('src', e.target.result);
     }
 
     reader.readAsDataURL(this.files[0]);
 }
 
 });
-</script> -->
+$(".image-2").change(function () {
+
+if (this.files && this.files[0]) {
+   var reader = new FileReader();
+
+   reader.onload = function (e) {
+     
+       $('.image-preview-2').attr('src', e.target.result);
+   }
+
+   reader.readAsDataURL(this.files[0]);
+}
+
+});
+$(".image-3").change(function () {
+
+if (this.files && this.files[0]) {
+   var reader = new FileReader();
+
+   reader.onload = function (e) {
+     
+       $('.image-preview-3').attr('src', e.target.result);
+   }
+
+   reader.readAsDataURL(this.files[0]);
+}
+
+});
+$(".image-4").change(function () {
+
+if (this.files && this.files[0]) {
+   var reader = new FileReader();
+
+   reader.onload = function (e) {
+     
+       $('.image-preview-4').attr('src', e.target.result);
+   }
+
+   reader.readAsDataURL(this.files[0]);
+}
+
+});
+</script>
 <script>
   $(function () {
     //Initialize Select2 Elements

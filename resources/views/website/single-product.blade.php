@@ -257,11 +257,91 @@
                             </div>
                         </div>
                         <!-- product details description area end -->
+                        
                     </div>
                 </div>
             </div>
         </div>
+     <!-- Product Area Start -->
+     <div class="product-area related-product">
+            <div class="container">
+                <!-- Section Title & Tab Start -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title text-center m-0">
+                            <h2 class="title">Related Products</h2>
+                            <p>There are many variations of passages of Lorem Ipsum available</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Section Title & Tab End -->
+                <div class="row">
+                    <div class="col">
+                        <div class="new-product-slider swiper-container slider-nav-style-1">
+                            <div class="swiper-wrapper">
+                               @foreach ($products as $product)
+                               <div class="swiper-slide">
+                                    <!-- Single Prodect -->
+                                    <div class="product">
+                                        <span class="badges">
+                                        <span class="new">New</span>
+                                        </span>
+                                        <div class="thumb">
+                                            <a href="{{route('product.details',$product->id)}}" class="image">
+                                                <img src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[0]->image)}}" alt="Product" />
+                                                <img class="hover-image" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[1]->image)}}" alt="Product" />
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <span class="category"><a href="#">{{$product->category->name}}</a></span>
+                                            <h5 class="title"><a href="single-product.html">Modern Smart Phone
+                                                </a>
+                                            </h5>
+                                            <span class="price">
+                                            <span class="new">EGP {{number_format($product->sale_price)}}</span>
+                                            </span>
+                                        </div>
+                                        <div class="actions">
+                                        <form id="AddToCart-form-{{$product->id}}" action="{{route('AddToCart')}}" method="POST">
+                                        @csrf 
+                                        <input type="hidden" class ="quantity" name="quantity" value="1">
+                                        
+                                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                                      </form>
+                                      <form id="AddToWishList-form-{{$product->id}}" action="{{route('AddItemToWishList')}}" method="POST" style="display:none">
+                                                  @csrf 
+                                        
+                                                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                    </form>
+                                                <button title="Add To Cart" class="action add-to-cart" onclick="event.preventDefault();
+                                                     document.getElementById('AddToCart-form-{{$product->id}}').submit();" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                                    class="pe-7s-shopbag"></i></button>
 
+                                                  
+                                                            <button class="action wishlist" title="Wishlist" onclick="event.preventDefault();
+                                                     document.getElementById('AddToWishList-form-{{$product->id}}').submit();" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
+                                                                    class="pe-7s-like"></i></button>
+                                                                    <a href="{{route('product.details',$product->id)}}" title="Quick view" class="action quickview" data-link-action="quickview" ><i class="pe-7s-look"></i></a>
+
+                                                            <button class="action compare" title="Compare" data-bs-toggle="modal" data-bs-target="#exampleModal-Compare"><i
+                                                                    class="pe-7s-refresh-2"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                               @endforeach
+                               
+                            </div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-buttons">
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product Area End -->
 
 @endsection
 

@@ -3,7 +3,11 @@
 
     <style>
      .table .actions{
-      display: block ruby;
+      display: flex;
+     }
+     .actions button{
+       margin-left:4px
+
      }
      .card-header a{
          float:right

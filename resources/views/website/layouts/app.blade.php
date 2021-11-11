@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{asset('website_files/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{asset('website_files/css/font.awesome.css')}}" />
     <link rel="stylesheet" href="{{asset('website_files/css/pe-icon-7-stroke.css')}}" />
-    <link rel="stylesheet" href="{{asset('website_files/css/anima   te.min.css')}}">
+    <link rel="stylesheet" href="{{asset('website_files/css/animate.min.css')}}">
     <link rel="stylesheet" href="{{asset('website_files/css/swiper-bundle.min.css')}}">
     <link rel="stylesheet" href="{{asset('website_files/css/venobox.css')}}">
     <link rel="stylesheet" href="{{asset('website_files/css/jquery-ui.min.css')}}">
@@ -25,6 +25,33 @@
     <!-- Minify Version -->
     <!-- <link rel="stylesheet" href="assets/css/plugins.min.css">
     <link rel="stylesheet" href="assets/css/style.min.css"> -->
+    <style type="text/css">
+
+img{
+
+border-radius: 3px;
+
+}
+
+p{
+
+color: #a1a1a1;
+
+}
+
+.search-element ul{
+
+width: 100%;
+
+} 
+
+
+/* .typeahead{
+    background-color: whitesmoke;
+} */
+
+</style>
+
 </head>
 
 <body>
@@ -63,9 +90,9 @@
                         </div>
                         <div class="col-lg-6 d-none d-lg-block">
                             <div class="search-element">
-                            <form action="{{route('home')}}" method="get">
-                        
-                            <input type="text" placeholder="Search" name="searchBy" />
+                        <form action="{{route('home')}}" method="get">
+                            @csrf
+                            <input type="text" placeholder="Search"  autocomplete="off" class="typeahead sea-view" name="searchBy" />
                             <button type="submit"><i class="pe-7s-search"></i></button>
                         </form>
                             </div>
@@ -86,7 +113,7 @@
                                    {{$cart->products->count()}}
 
                                   </span>
-                                  @else
+                                   @else
                                   <span class="header-action-num"> 
                                    
                                    0
@@ -94,11 +121,13 @@
                                   @endif
 
                                    @endauth
-                                   @guest
-                                    <span class="header-action-num"> 
-                                   
-                                    0
+                                  @guest
+
+                                   <span class="header-action-num"> 
+            
+                                    {{\Gloudemans\Shoppingcart\Facades\Cart::content()->count()}}
                                    </span>
+
                                   @endguest 
                                     <!-- <span class="cart-amount">€30.00</span> -->
                                 </a>
@@ -123,8 +152,8 @@
                         <div class="col-lg-6 d-none d-lg-block">
                             <div class="search-element">
                             <form action="{{route('home')}}" method="get">
-                        @csrf
-                            <input type="text" placeholder="Search" name="searchBy" />
+                            @csrf
+                            <input type="text" placeholder="Search" autocomplete="off" class="typeahead sea-view" name="searchBy" />
                             <button type="submit"><i class="pe-7s-search"></i></button>
                         </form>
                             </div>
@@ -156,7 +185,7 @@
                                    @guest
                                     <span class="header-action-num"> 
                                    
-                                    0
+                                  {{Cart::content()->count()}}
                                    </span>
                                   @endguest 
                                 </a>
@@ -197,23 +226,23 @@
                                         <li class="d-flex">
                                             <ul class="d-block">
                                                 <li class="title"><a href="#">Mobile Phones</a></li>
-                                                <li><a href="#">Samsung</a></li>
-                                                <li><a href="#">Oppo</a></li>
-                                                <li><a href="#">Redmi</a></li>
-                                                <li><a href="#">Sony</a></li>
-                                                <li><a href="#">Huwaui</a>
+                                                <li><a href="{{route('home')}}?searchBy=Samsung">Samsung</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Oppo">Oppo</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Redmi">Redmi</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Sony">Sony</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Huwaui">Huwaui</a>
                                                 </li>
-                                                <li><a href="#">Nokia</a>
+                                                <li><a href="{{route('home')}}?searchBy=Nokia">Nokia</a>
                                                 </li>
                                             </ul>
                                             <ul class="d-block">
                                                 <li class="title"><a href="#">Laptops</a></li>
-                                                <li><a href="#">HP</a></li>
-                                                <li><a href="#">Dell</a></li>
-                                                <li><a href="#">Mac</a></li>
-                                                <li><a href="#">Samsung</a></li>
-                                                <li><a href="#">Lenovo</a></li>
-                                                <li><a href="#">Toshiba</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=HP">HP</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Dell">Dell</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Mac">Mac</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Samsung">Samsung</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Lenovo">Lenovo</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Toshiba">Toshiba</a></li>
                                             </ul>
                                            
                                         </li>
@@ -260,11 +289,11 @@
                 <div class="container">
                     <!-- mobile search start -->
                     <div class="search-element max-width-100">
-                        <form action="{{route('home')}}" method="get">
+                    <form action="{{route('home')}}" method="get">
                         @csrf
-                            <input type="text" placeholder="Search" name="searchBy" />
-                            <button type="submit"><i class="pe-7s-search"></i></button>
-                        </form>
+                        <input type="text" placeholder="Search" autocomplete="off" class="typeahead sea-view" name="searchBy" />
+                        <button type="submit"><i class="pe-7s-search"></i></button>
+                    </form>
                     </div>
                     <!-- mobile search start -->
                 </div>
@@ -407,16 +436,34 @@
                     <button class="offcanvas-close">×</button>
                 </div>
                 <div class="body customScroll">
-                   
+                    <ul class="minicart-product-list">
+                    @foreach(Cart::content() as $row) 
+                                    
+                        <li>
+                            <a href="single-product.html" class="image"><img src="{{asset('storage/uploads/product_images/'.$row->name.'/'.$row->image)}}" alt="Cart product Image"></a>
+                            <div class="content">
+                                <a href="single-product.html" class="title">{{$row->name}}</a>
+                                <span class="quantity-price">{{$row->qty}} x <span class="amount">EGP {{number_format($row->price)}}</span></span>
+                                <form id ="removeItemFromCart-form" action="{{route('RemoveItemFromCart',$row->id)}}" method="post" style="display: none;">
+                                                @csrf
+                                                {{ method_field("delete") }}
+                                                </form>
+                                <a onclick="event.preventDefault();
+                                                     document.getElementById('removeItemFromCart-form').submit();" class="remove">×</a>
+                            </div>
+                        </li>
+                    @endforeach  
+                    </ul>
                 </div>
                 <div class="foot">
-                    <!-- <div class="buttons mt-30px">
-                        <a href="cart.html" class="btn btn-dark btn-hover-primary mb-30px">view cart</a>
-                        <a href="checkout.html" class="btn btn-outline-dark current-btn">checkout</a>
-                    </div> -->
+                    <div class="buttons mt-30px">
+                        <a href="{{route('cart.items')}}" class="btn btn-dark btn-hover-primary mb-30px">view cart</a>
+                        <a href="{{route('order.checkout')}}" class="btn btn-outline-dark current-btn">checkout</a>
+                    </div>
                 </div>
             </div>
         </div>
+        
         @endguest 
         <!-- OffCanvas Cart End -->
         <!-- OffCanvas Menu Start -->
@@ -454,27 +501,24 @@
                                         <li class="d-flex">
                                             <ul class="d-block">
                                                 <li class="title"><a href="#">Mobile Phones</a></li>
-                                                <li><a href="#">Samsung</a></li>
-                                                <li><a href="#">Oppo</a></li>
-                                                <li><a href="#">Redmi</a></li>
-                                                <li><a href="#">Sony</a></li>
-                                                <li><a href="#">Huwaui</a>
+                                                <li><a href="{{route('home')}}?searchBy=Samsung">Samsung</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Oppo">Oppo</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Redmi">Redmi</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Sony">Sony</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Huwaui">Huwaui</a>
                                                 </li>
-                                                <li><a href="#">Nokia</a>
+                                                <li><a href="{{route('home')}}?searchBy=Nokia">Nokia</a>
                                                 </li>
                                             </ul>
                                             <ul class="d-block">
                                                 <li class="title"><a href="#">Laptops</a></li>
-                                                <li><a href="#">HP</a></li>
-                                                <li><a href="#">Dell</a></li>
-                                                <li><a href="#">Mac</a></li>
-                                                <li><a href="#">Samsung</a></li>
-                                                <li><a href="#">Lenovo</a></li>
-                                                <li><a href="#">Toshiba</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=HP">HP</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Dell">Dell</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Mac">Mac</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Samsung">Samsung</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Lenovo">Lenovo</a></li>
+                                                <li><a href="{{route('home')}}?searchBy=Toshiba">Toshiba</a></li>
                                             </ul>
-                                           
-                                        </li>
-                                    </ul>
                                 </li>
                                 <!-- <li class="dropdown "><a href="#">Blog <i class="fa fa-angle-down"></i></a>
                                     <ul class="sub-menu">
@@ -574,22 +618,24 @@
                             </div>
                             <!-- End single blog -->
                             <!-- Start single blog -->
+                            <!-- Start single blog -->
                             <div class="col-md-6 col-lg-3 col-sm-6 mb-lm-30px pl-lg-60px">
                                 <div class="single-wedge">
                                     <h4 class="footer-herading">Services</h4>
                                     <div class="footer-links">
                                         <div class="footer-row">
                                             <ul class="align-items-center">
-                                                <li class="li"><a class="single-link" href="my-account.html">My Account</a></li>
-                                                <li class="li"><a class="single-link" href="contact.html">Contact</a></li>
-                                                <li class="li"><a class="single-link" href="cart.html">Shopping cart</a></li>
-                                                <li class="li"><a class="single-link" href="shop-left-sidebar.html">Shop</a></li>
-                                                <li class="li"><a class="single-link" href="login.html">Services Login</a></li>
+                                                <li class="li"><a class="single-link" href="{{route('account.dashboard')}}">My Account</a></li>
+                                                <li class="li"><a class="single-link" href="/contact">Contact</a></li>
+                                                <li class="li"><a class="single-link" href="{{route('cart.items')}}">Shopping cart</a></li>
+                                                <li class="li"><a class="single-link" href="{{route('home')}}">Shop</a></li>
+                                                <li class="li"><a class="single-link" href="{{route('account.dashboard')}}">Services Login</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- End single blog -->
                             <!-- End single blog -->
                             <!-- Start single blog -->
                             <div class="col-md-6 col-lg-3 col-sm-6 mb-lm-30px pl-lg-40px">
@@ -598,11 +644,11 @@
                                     <div class="footer-links">
                                         <div class="footer-row">
                                             <ul class="align-items-center">
-                                                <li class="li"><a class="single-link" href="my-account.html">My Account</a></li>
-                                                <li class="li"><a class="single-link" href="contact.html">Contact</a></li>
-                                                <li class="li"><a class="single-link" href="cart.html">Shopping cart</a></li>
-                                                <li class="li"><a class="single-link" href="shop-left-sidebar.html">Shop</a></li>
-                                                <li class="li"><a class="single-link" href="login.html">Services Login</a></li>
+                                                <li class="li"><a class="single-link" href="{{route('account.dashboard')}}">My Account</a></li>
+                                                <li class="li"><a class="single-link" href="/contact">Contact</a></li>
+                                                <li class="li"><a class="single-link" href="{{route('cart.items')}}">Shopping cart</a></li>
+                                                <li class="li"><a class="single-link" href="{{route('home')}}">Shop</a></li>
+                                                <li class="li"><a class="single-link" href="{{route('account.dashboard')}}">Services Login</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -661,6 +707,69 @@
     <script src="{{asset('website_files/js/plugins/venobox.min.js')}}"></script>
     <script src="{{asset('website_files/js/plugins/jquery-ui.min.js')}}"></script>
     <script src="{{asset('website_files/js/plugins/mailchimp-ajax.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>  
+    <script type="text/javascript">
+
+var path = "{{ route('autocomplete') }}";
+
+$('input.typeahead').typeahead({
+
+    source:  function (query, process) {
+
+        return $.get(path, { query: query }, function (data) {
+
+            return process(data);
+
+        });
+
+    },
+
+    highlighter: function (item, data) {
+
+        var parts = item.split('#'),
+
+            html = '<div class="row link-view" data-href="'+data.link+'">';
+            //html += '<a href="'+data.link+'" >';
+
+            html += '<div class="col-md-3" style="margin-top: 8px;">';
+
+            html += '<img calss="link-view" src="{{asset("/storage/uploads/product_images")}}'+'/'+data.name+'/'+ data.image+'"/ height="44px;" width="65px;">';
+
+            html += '</div>';
+
+            html += '<div class="col-md-7 pl-0">';
+
+            html += '<span>'+data.name+'</span>';
+
+            html += '<p class="m-0">'+ 'EGP ' +data.sale_price+'</p>';
+
+
+            html += '</div>';
+
+            //html += '</a>';
+
+            html += '</div>';
+
+
+        return html;
+
+    }
+
+});
+
+</script>
+<script>
+$(document).ready(function(){
+    $('.sea-view').change(function(){
+        var link = $(".link-view").data("href");
+        
+   window.location.href= link;
+})
+});
+
+
+
+</script>
 
     <!-- Minify Version -->
     <!-- <script src="assets/js/vendor.min.js"></script>

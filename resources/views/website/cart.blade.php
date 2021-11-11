@@ -26,7 +26,7 @@
         </div>
         <!-- breadcrumb-area end -->
            <!-- Cart Area Start -->
-           @if(isset($cart)  )
+        @if(isset($cart))
         <div class="cart-main-area pt-100px pb-100px">
             <div class="container">
                 <h3 class="cart-page-title">Your cart items</h3>
@@ -46,8 +46,8 @@
                                         </tr>
                                     </thead>
                                     <form id ="updateCartItems-form" action="{{route('UpdateCartItems')}}" method="post" style="display: none;">
-                                    @csrf
-                                   
+                                    @csrf                         
+                                    @auth
                                     <tbody> 
                                        @foreach($cart->products as $product)
                                         <tr>
@@ -74,7 +74,36 @@
                                         </tr>
                                       @endforeach 
                                     </tbody>
+                                    @endauth
                                     
+                                    @guest
+                                    <?php foreach(Cart::content() as $row) :?>
+                                    
+                                        <tr>
+                                            <td class="product-thumbnail">
+                                                <a href="#"><img class="img-responsive ml-15px" src="{{asset('storage/uploads/product_images/'.$row->name.'/'.$row->image)}}" alt="" /></a>
+                                            </td>
+                                            <td class="product-name"><a href="#">{{$row->name}}</a></td>
+                                            <td class="product-price-cart"><span class="amount">EGP {{number_format($row->price)}}</span></td>
+                                            <td class="product-quantity">
+                                                <div class="cart-plus-minus" >
+                                                    <input class="cart-plus-minus-box p-m-{{$row->id}}" type="text" data-id="{{$row->id}}" name="qtybutton" value="{{$row->qty}}" />
+                                                </div>
+                                            </td>
+                                             <input type="hidden" name="product_ids[]" value="{{$row->id}}">
+                                             <input type="hidden" class ="quantity-{{$row->id}}" name="quantities[]"  value="{{$row->qty}}">
+                                            
+                                            <td class="product-subtotal">EGP {{number_format($row->price * $row->qty)}}</td>
+                                            <td class="product-remove">
+                                                <a href="{{route('product.details',$row->id)}}"><i class="fa fa-pencil"></i></a>
+                                                
+                                               
+                                                <a class="remove-item" data-id="{{$row->id}}" data-method="delete" ><i class="fa fa-times"></i></a>
+                                            </td>
+                                        </tr>
+
+                                     <?php endforeach;?>   
+                                    @endguest
                                 </table>
                                 </form>
                             </div>
@@ -163,7 +192,15 @@
                                     <div class="title-wrap">
                                         <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
                                     </div>
-                                    <h5>Total products <span>EGP {{number_format($cart->total_price)}}</span></h5>
+                                    <h5>Total products <span>
+                                    @auth
+                                    EGP {{number_format($cart->total_price)}}
+                                          
+                                    @endauth
+                                    @guest
+                                    EGP {{Cart::pricetotal()}}
+                                    @endguest    
+                                    </span></h5>
                                     <div class="total-shipping">
                                         <h5>Total shipping</h5>
                                         <ul>
@@ -171,7 +208,13 @@
                                             <li><input type="checkbox" /> Express <span>EGP 30.00</span></li>
                                         </ul>
                                     </div>
-                                    <h4 class="grand-totall-title">Grand Total <span>EGP {{number_format($cart->total_price)}} </span></h4>
+                                    <h4 class="grand-totall-title">Grand Total <span> 
+                                    @auth
+                                    EGP {{number_format($cart->total_price)}}      
+                                    @endauth
+                                    @guest
+                                    EGP {{Cart::pricetotal()}}
+                                    @endguest     </span></h4>
                                     <a href="{{route('order.checkout')}}">Proceed to Checkout</a>
                                 </div>
                             </div>

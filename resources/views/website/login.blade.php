@@ -41,8 +41,8 @@
                                         <form action="{{route('login')}}" method="post">
                                             @csrf
                                             @include('website.partials._errors')
-                                            <input  type="email"  name="email" placeholder="Email" />
-                                                <input type="password" name="password" placeholder="Password" />
+                                            <input  type="email"  name="email" placeholder="Email"  required="" autocomplete="off"/>
+                                                <input type="password" name="password" placeholder="Password" required=""  />
                                                 <div class="button-box">
                                                     <div class="login-toggle-btn">
                                                         <input type="checkbox" />
@@ -61,10 +61,10 @@
                                         <form action="{{route('register')}}" method="post">
                                             @csrf
                                             @include('website.partials._errors')
-                                                <input type="text" name="name" placeholder="Name" />
-                                                <input  type="email"  name="email" placeholder="Email" />
-                                                <input type="password" name="password" placeholder="Password" />
-                                                <input type="password" name="password_confirmation" placeholder="Password Confirmation" />
+                                                <input type="text" name="name" placeholder="Name" required="" autocomplete="off" />
+                                                <input  type="email"  name="email" placeholder="Email" required="" autocomplete="off"/>
+                                                <input type="password" name="password" placeholder="Password" required=""  />
+                                                <input type="password" name="password_confirmation" placeholder="Password Confirmation" required="" />
                                                 
                                                 <div class="button-box">
                                                     <button type="submit"><span>Register</span></button>

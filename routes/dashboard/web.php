@@ -6,7 +6,7 @@ use App\Http\Controllers\AdminControllers\HomeController;
 use App\Http\Controllers\AdminControllers\CategoryController;
 use App\Http\Controllers\AdminControllers\ProductController;
 use App\Http\Controllers\AdminControllers\OrderController;
-
+use App\Http\Controllers\AdminControllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +36,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function(){
 Route::prefix('dashboard')->middleware("authAdmin")->name("dashboard.")->group(function(){
 
     Route::resource('/categories',CategoryController::class);
+    Route::resource('/users',UserController::class);
     Route::resource('/products',ProductController::class);
     Route::get('/orders',[OrderController::class,'index'])->name("orders.index");
     Route::get('/order/{id}/details',[OrderController::class,'OrderDetails'])->name("order.details");  

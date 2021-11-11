@@ -52,6 +52,15 @@
                         </div>
                     </div>
                 </div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination swiper-pagination-white"></div>
+                <!-- Add Arrows -->
+                <div class="swiper-buttons">
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
                 <!--End Slider -->
                 <!-- Banner Area Start -->
         <div class="banner-area style-two pt-100px pb-100px">
