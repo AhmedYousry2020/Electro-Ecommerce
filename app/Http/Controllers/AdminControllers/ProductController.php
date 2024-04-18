@@ -42,12 +42,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-         
+
         $validator = Validator::make($request->all(),[
 
             "category_id"=>"required",
             "name"=>"required|string|max:50",
-           "details"=>"required|string",
+        //    "details"=>"required|string",
             "description"=>"string",
             "purchase_price"=>"required",
             "sale_price"=>"required",
@@ -55,7 +55,7 @@ class ProductController extends Controller
             "color"=>"required|string",
             "SKU"=>"required"
 
-            
+
         ]);
         if($validator->fails()){
 
@@ -64,25 +64,25 @@ class ProductController extends Controller
         $requestAll = $validator->validated();
         $product = Product::Create($requestAll);
         if($product){
-            
+
             if($request->hasfile("image")){
                 for($i=0;$i<sizeof($request->image);$i++){
-                    
+
                     if(!is_null($request->image[$i])){
                         $imageName = $this->UploadPhoto($request->image[$i],"uploads/"."product_images/".$product->name);
- 
+
                         ProductImages::Create([
                             "product_id"=>$product->id,
                             "image"=>$imageName
                         ]);
-                             
-                    }     
+
+                    }
                 }
                 }
         }
-       
+
             return redirect()->route("dashboard.products.index")->with("success","added_auccessfully");
-       
+
     }
 
     /**
@@ -140,10 +140,10 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
         $product->update($requestAll);
-        
+
         return redirect()->route("dashboard.products.index")->with("success","updated_successfully");
-      
-        
+
+
     }
 
     /**
@@ -165,7 +165,7 @@ class ProductController extends Controller
         $imageName = $image->getClientOriginalName();
         $path = $image->storeAs($folder, $imageName, 'public');
         return $imageName;
-    
+
     }
 
 }

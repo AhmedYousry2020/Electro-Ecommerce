@@ -54,7 +54,7 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Category</th>
-                  
+
                     <th>Acion</th>
                   </tr>
                   </thead>
@@ -64,7 +64,7 @@
                   <tr>
                     <td>{{$product->name}}</td>
                     <td>{{$product->description}}</td>
-                    <td>{{$product->category->name}}</td> 
+                    <td>{{$product->category->name}}</td>
                     <!-- <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-{{$product->id}}">
  View Images
 </button> -->
@@ -80,13 +80,13 @@
                   </tr>
                   @endforeach
 
-                  
+
                   <tfoot>
                   <tr>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Category</th>
-                   
+
                     <th>Acion</th>
                   </tr>
                   </tfoot>
@@ -96,28 +96,28 @@
             </div>
             <!-- /.card -->
 
-            
+
           </div>
           <!-- /.col -->
         </div>
         <!-- /.row -->
-        
+
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   <!-- Modal -->
-<!-- Modal
+@isset($product)
 <div class="modal fade" id="exampleModal-{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Images</h5>
-        
+
       </div>
       <div class="modal-body">
       @if(isset($product->images))
         <row>
-       
+
       @foreach($product->images as $image)
       <td><img src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$image->image)}}" alt="" style="width: 90px;" class="img-thumbnail"></td>
 
@@ -125,15 +125,16 @@
 
         </row>
       @else
-      <row> not found </row>  
-      @endif  
+      <row> not found </row>
+      @endif
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
+
       </div>
     </div>
   </div>
-</div> -->
+</div>
+@endisset
 @endsection
 

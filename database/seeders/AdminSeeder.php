@@ -15,11 +15,10 @@ class AdminSeeder extends Seeder
     public function run()
     {
         Admin::Create([
-            
+
             "name"=>"Super Admin",
             "email"=>"Super_Admin2022@app.com",
             "password"=>Hash::make("123456"),
-            
 
         ]);
     }
