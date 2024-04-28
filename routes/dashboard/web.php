@@ -25,10 +25,10 @@ Route::prefix('dashboard')->name('dashboard.')->group(function(){
 
     Route::get("/login",[AuthController::class, 'LoginForm'])->name("loginForm");
     Route::get("/register",[AuthController::class, 'RegisterForm'])->name("registerForm");
-    
+
     Route::post("/login",[AuthController::class, 'Login'])->name("login");
     Route::post("/register",[AuthController::class, 'Register'])->name("register");
-    
+
     Route::get("/logout",[AuthController::class, 'Logout'])->name("logout");
 });
 
@@ -37,10 +37,11 @@ Route::prefix('dashboard')->middleware("authAdmin")->name("dashboard.")->group(f
 
     Route::resource('/categories',CategoryController::class);
     Route::resource('/users',UserController::class);
+    Route::post('dashboard/products/approve/{product}',[ProductController::class,'approve'])->name("products.approve");
     Route::resource('/products',ProductController::class);
     Route::get('/orders',[OrderController::class,'index'])->name("orders.index");
-    Route::get('/order/{id}/details',[OrderController::class,'OrderDetails'])->name("order.details");  
+    Route::get('/order/{id}/details',[OrderController::class,'OrderDetails'])->name("order.details");
     Route::delete('/order/{id}',[OrderController::class,'destroy'])->name("order.destroy");
-    
-    
+
+
 });

@@ -109,6 +109,14 @@ class ProductController extends Controller
         return view("dashboard.products.edit",compact("product","categories"));
     }
 
+    public function approve($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->approved = 1;
+        $product->save();
+        return redirect()->route("dashboard.products.index")->with("success","updated_successfully");
+
+    }
     /**
      * Update the specified resource in storage.
      *

@@ -9,18 +9,18 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('dashboard_files/plugins/fontawesome-free/css/all.min.css')}}">
-  
+
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="{{asset('dashboard_files/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('dashboard_files/dist/css/adminlte.min.css')}}"> 
+  <link rel="stylesheet" href="{{asset('dashboard_files/dist/css/adminlte.min.css')}}">
   <!-- Toastr -->
   <link rel="stylesheet" href="{{asset('dashboard_files/plugins/toastr/toastr.min.css')}}">
 
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-@include('dashboard.partials._sessions')  
+@include('dashboard.partials._sessions')
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
@@ -48,6 +48,16 @@
             </div>
           </div>
         </div>
+        <div class="input-group mb-3">
+
+            <select class="form-control select2bs4" style="width: 100%;">
+              <option selected="selected">Select a Role</option>
+
+              <option value="artist">Artist</option>
+              <option value="admin">Admin</option>
+
+              </select>
+          </div>
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">

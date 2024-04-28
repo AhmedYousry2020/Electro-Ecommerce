@@ -39,6 +39,11 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li>
+
+      {{-- <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{route('logout')}}" class="nav-link">logout</a>
+
+      </li> --}}
     </ul>
 
     <!-- Right navbar links -->
@@ -168,15 +173,15 @@
   <div class="content-wrapper">
   @include("dashboard.partials._sessions")
       @yield("content")
-    
+
   </div>
-  <!-- /.content-wrapper -->    
-
-  
+  <!-- /.content-wrapper -->
 
 
 
-  
+
+
+
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.1.0
@@ -219,7 +224,7 @@
     </script>
 <script>
   $(function () {
-    
+
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -228,7 +233,7 @@
       "info": true,
       "autoWidth": false,
       "responsive": true,
-      
+
     });
   });
 </script>
@@ -240,7 +245,7 @@ $(".image-1").change(function () {
     var reader = new FileReader();
 
     reader.onload = function (e) {
-      
+
         $('.image-preview-1').attr('src', e.target.result);
     }
 
@@ -254,7 +259,7 @@ if (this.files && this.files[0]) {
    var reader = new FileReader();
 
    reader.onload = function (e) {
-     
+
        $('.image-preview-2').attr('src', e.target.result);
    }
 
@@ -268,7 +273,7 @@ if (this.files && this.files[0]) {
    var reader = new FileReader();
 
    reader.onload = function (e) {
-     
+
        $('.image-preview-3').attr('src', e.target.result);
    }
 
@@ -282,7 +287,7 @@ if (this.files && this.files[0]) {
    var reader = new FileReader();
 
    reader.onload = function (e) {
-     
+
        $('.image-preview-4').attr('src', e.target.result);
    }
 
@@ -295,7 +300,7 @@ if (this.files && this.files[0]) {
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
-       
+
     //color picker with addon
     $('.my-colorpicker2').colorpicker()
 

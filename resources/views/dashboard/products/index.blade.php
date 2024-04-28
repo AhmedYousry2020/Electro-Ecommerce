@@ -44,7 +44,10 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Products List</h3>
+
+                @if(Auth::guard('admin')->user()->type == 'artist')
                 <a href="{{route('dashboard.products.create')}}" class="btn btn-primary btn-sm">Create new Product<i class="fas fa-plus"></i></a>
+                @endif
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -53,6 +56,7 @@
                   <tr>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Approve</th>
                     <th>Category</th>
 
                     <th>Acion</th>
@@ -64,6 +68,15 @@
                   <tr>
                     <td>{{$product->name}}</td>
                     <td>{{$product->description}}</td>
+                    <td>
+                        @if($product->approved == 1)
+                        <div class='badge badge-success badge-lg'> Approved </div>
+
+                        @else
+                        <div class='badge badge-warning badge-lg'> Pending </div>
+
+                        @endif
+                    </td>
                     <td>{{$product->category->name}}</td>
                     <!-- <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal-{{$product->id}}">
  View Images
@@ -71,11 +84,18 @@
 
                     <td class="actions">
                     <a href="{{route('dashboard.products.edit',$product->id)}}" class="btn btn-outline-success btn-sm"><i class="fa fa-edit"></i></a>
+
                     <form action="{{route('dashboard.products.destroy',$product->id)}}" method="post">
                     @csrf
                     {{ method_field("delete") }}
                     <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></a>
                     </form>
+                    @if(Auth::guard('admin')->user()->type == 'admin' && $product->approved == 0)
+                    <form action="{{route('dashboard.products.approve',$product->id)}}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-primary btn-sm">Approve</a>
+                        </form>
+                        @endif
                     </td>
                   </tr>
                   @endforeach
@@ -85,6 +105,8 @@
                   <tr>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Approve</th>
+
                     <th>Category</th>
 
                     <th>Acion</th>
