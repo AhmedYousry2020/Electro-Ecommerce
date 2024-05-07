@@ -29,10 +29,10 @@ Route::prefix('user/account')->group(function(){
 
 Route::get("/login",[AuthController::class, 'LoginForm'])->name("loginForm");
 Route::get("/register",[AuthController::class, 'RegisterForm'])->name("registerForm");
-    
+
 Route::post("/login",[AuthController::class, 'Login'])->name("login");
 Route::post("/register",[AuthController::class, 'Register'])->name("register");
-    
+
 Route::get("/logout",[AuthController::class, 'Logout'])->name("logout");
 
 });
@@ -44,7 +44,7 @@ Route::group([],function(){
     Route::get('/',[HomeController::class,'index'])->name("home");
     Route::get('/product/{id}/details',[ProductController::class,'GetSingleProductDetails'])->name("product.details");
     Route::get('/products',[ProductController::class,'GetProducts'])->name("products");
-  
+
     Route::get('/autocomplete',[HomeController::class,'autocomplete'])->name('autocomplete');
 
 
@@ -57,14 +57,16 @@ Route::group([],function(){
     Route::post('/addToWishList',[WishListController::class,'AddItemToWishList'])->name('AddItemToWishList')->middleware("auth:web");
     Route::get('/viewWishListItem',[WishListController::class,'index'])->name("wishlist.items")->middleware("auth:web");
 
-  
+
 
     Route::get("/my-account",[HomeController::class,'AccountDashboard'])->name("account.dashboard")->middleware("auth");
     Route::post("/my-account",[AccountController::class,'store'])->name("account.dashboard.store")->middleware("auth");
+    Route::post("/my-account/add-product",[AccountController::class,'store_product'])->name("account.products.store")->middleware("auth");
+
     Route::post("/my-account/change-password",[AccountController::class,'change_password'])->name("account.dashboard.change_password")->middleware("auth");
 
     Route::get("/order/checkout",[OrderController::class,'checkout'])->name("order.checkout")->middleware("auth");
-    
+
     Route::post("/order/store",[OrderController::class,'AddOrder'])->name("order.store")->middleware("auth");
-    
+
 });

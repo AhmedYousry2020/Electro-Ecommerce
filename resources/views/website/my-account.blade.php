@@ -29,6 +29,7 @@
                                 <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a></li>
                                 <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">authentication</a></li>
                                 <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
+                                <li><a href="#products" data-bs-toggle="tab" class="nav-link">Products</a></li>
                                 <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
                                 </li>
                                 <li><a href="{{route('logout')}}" class="nav-link">logout</a></li>
@@ -66,7 +67,7 @@
                                                 @else
                                                 <td><span >Processing</span></td>
                                                 @endif
-                                                
+
                                                 <td>EGP {{$order->total_price}} for {{$order->products->count()}} item </td>
                                                 <td><a href="{{route('cart.items')}}" class="view">view</a></td>
                                             </tr>
@@ -79,7 +80,7 @@
                                     <h4>Change Password</h4>
                                     <div class="login">
                                     <div class="login_form_container">
-                                    @include('website.partials._sessions') 
+                                    @include('website.partials._sessions')
                                         <div class="account_login_form">
                                             <form action="{{route('account.dashboard.change_password')}}" method="post">
                                             @csrf
@@ -94,12 +95,12 @@
                                                     <label>New Password</label>
                                                     <input type="password" name="new_password" >
                                                 </div>
-                                            
+
                                                <div class="default-form-box mb-20">
                                                     <label>Password Confirmation</label>
                                                     <input type="password" name="new_password_confirmation">
                                                 </div>
-                                                
+
                                                 <div class="save_button mt-3">
                                                     <button class="btn" type="submit">Save</button>
                                                 </div>
@@ -112,25 +113,25 @@
                                 <p>The following addresses will be used on the checkout page by default.</p>
                                 <h5 class="billing-address">Billing address</h5>
                                 <a href="#" class="view">Edit</a>
-                                <p class="mb-2"><strong>{{$addresses[0]->address}}</strong></p>
+                                <p class="mb-2"><strong>{{$addresses->address}}</strong></p>
                                 <address>
-                                   
-                                    <span class="mb-1 d-inline-block"><strong>Phone:</strong> {{$phones[0]->phone_number}}</span>,
+
+                                    <span class="mb-1 d-inline-block"><strong>Phone:</strong> {{$phones->phone_number}}</span>,
                                     <br>
-                                    <span class="mb-1 d-inline-block"><strong>ZIP:</strong> {{$addresses[0]->zip_code}}</span>,
+                                    <span class="mb-1 d-inline-block"><strong>ZIP:</strong> {{$addresses->zip_code}}</span>,
                                     <br>
-                                    <span><strong>Country:</strong> {{$addresses[0]->location_country}}</span>
+                                    <span><strong>Country:</strong> {{$addresses->location_country}}</span>
                                 </address>
                             </div>
                             <div class="tab-pane fade" id="account-details">
                                 <h3>Account details </h3>
                                 <div class="login">
                                     <div class="login_form_container">
-                                    @include('website.partials._sessions') 
+                                    @include('website.partials._sessions')
                                         <div class="account_login_form">
                                             <form action="{{route('account.dashboard.store')}}" method="post">
                                             @csrf
-                                           
+
                                                 <p>Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginActive">Log in instead!</a></p>
                                                  <br>
                                                  @include('website.partials._errors')
@@ -386,7 +387,7 @@
                                             <option value="Zambia">Zambia</option>
                                             <option value="Zimbabwe">Zimbabwe</option>
                                             </select>
-      
+
                                                 </div>
                                                <div class="default-form-box mb-20">
                                                     <label>Zip Code</label>
@@ -404,6 +405,65 @@
                                                         moment. For that purpose, please find our contact info in the
                                                         legal notice.</em></span>
                                                 </label>
+                                                <div class="save_button mt-3">
+                                                    <button class="btn" type="submit">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="products">
+                                <h3>Products </h3>
+                                <div class="login">
+                                    <div class="login_form_container">
+                                    @include('website.partials._sessions')
+                                        <div class="account_login_form" >
+                                            <form action="{{route('account.products.store')}}" method="post" enctype="multipart/form-data">
+                                            @csrf
+
+                                                 <br>
+                                                 @include('website.partials._errors')
+                                                 <div class="default-form-box mb-20">
+                                                    <label>Product Name</label>
+                                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter product name" name="name">
+                                                </div>
+                                                <div class="default-form-box mb-20">
+                                                    <label>Description</label>
+                                                    <textarea class="form-control" rows="1" placeholder="Enter product description" name="description"></textarea>
+                                                 </div>
+                                                 <div class="default-form-box mb-20">
+                                                    <label>Details</label>
+                                                    <textarea class="form-control" rows="1" placeholder="Enter product details" name="details"></textarea>
+                                                 </div>
+                                               <div class="default-form-box mb-20">
+                                                <label for="exampleInputEmail1">Purchase_price</label>
+                                                <input type="number" class="form-control" id="exampleInputEmail1" placeholder="{{ __("e.g 20") }}" step="0.01" required="" min="0"  name="purchase_price">
+                                                                            </div>
+                                                                            <div class="default-form-box mb-20">
+                                                                                <label for="exampleInputEmail1">Sale_price</label>
+                                                                                <input type="number" class="form-control" id="exampleInputEmail1" placeholder="{{ __("e.g 20") }}" step="0.01" required="" min="0" name="sale_price">
+                                                                                                                                                                        </div>
+                                                        <div class="default-form-box mb-20">
+                                                            <label for="exampleInputEmail1">Stock</label>
+                                                            <input type="number" class="form-control" id="exampleInputEmail1" placeholder="{{ __("10") }}" step="0.01" required="" min="0" name="stock">
+                                                                                                                                                    </div>
+                                                                                                                                                    <div class="default-form-box mb-20">
+                                                                                                                                                        <label>Image</label>
+                                                                                                                                                        <input class="form-control image-3" type="file" name="image[]">                                                                                    </div>
+                                                                                                                                                    </div>
+                                                                                                                                                    <div class="form-group">
+                                                                                                                                                        <label>Category</label>
+                                                                                                                                                        <select class="form-control select2bs4" style="width: 100%;" name="category_id">
+                                                                                                                                                          <option selected="selected">Select a Category</option>
+                                                                                                                                                          @foreach($categories as $category)
+                                                                                                                                                          <option value="{{$category->id}}">{{$category->name}}</option>
+                                                                                                                                                          @endforeach
+                                                                                                                                                          </select>
+                                                                                                                                                      </div>
+
+
+
                                                 <div class="save_button mt-3">
                                                     <button class="btn" type="submit">Save</button>
                                                 </div>

@@ -45,9 +45,9 @@
               <div class="card-header">
                 <h3 class="card-title">Products List</h3>
 
-                @if(Auth::guard('admin')->user()->type == 'artist')
+                {{-- @if(Auth::guard('admin')->user()->type == 'artist')
                 <a href="{{route('dashboard.products.create')}}" class="btn btn-primary btn-sm">Create new Product<i class="fas fa-plus"></i></a>
-                @endif
+                @endif --}}
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -90,7 +90,7 @@
                     {{ method_field("delete") }}
                     <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></a>
                     </form>
-                    @if(Auth::guard('admin')->user()->type == 'admin' && $product->approved == 0)
+                    @if($product->approved == 0)
                     <form action="{{route('dashboard.products.approve',$product->id)}}" method="post">
                         @csrf
                         <button type="submit" class="btn btn-outline-primary btn-sm">Approve</a>

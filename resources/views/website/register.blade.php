@@ -39,11 +39,22 @@
                                             <form action="{{route('register')}}" method="post">
                                             @csrf
                                             @include('website.partials._errors')
-                                                <input type="text" name="name" placeholder="Name" />
-                                                <input  type="email"  name="email" placeholder="Email" />
-                                                <input type="password" name="password" placeholder="Password" />
+                                            <input type="text" name="username" placeholder="Username" />
+                                            <input  type="email"  name="email" placeholder="Email" />
+
+                                            <input type="text" name="first_name" placeholder="First Name" />
+                                            <input type="text" name="last_name" placeholder="Last Name" />
+
+                                            <input type="text" name="phone" placeholder="Phone" />
+                                            <input type="text" name="address" placeholder="Address" />
+                                            <select name="type" class="form-select mb-4">
+                                                <option selected> select user type</option>
+
+                                                <option value="user">User</option>
+                                                <option value="artist">Artist</option>
+                                            </select>                                                <input type="password" name="password" placeholder="Password" />
                                                 <input type="password" name="password_confirmation" placeholder="Password Confirmation" />
-                                                
+
                                                 <div class="button-box">
                                                     <button type="submit"><span>Register</span></button>
                                                 </div>
@@ -79,4 +90,4 @@
         </div>
         <!-- login area end -->
 
-@endsection        
+@endsection

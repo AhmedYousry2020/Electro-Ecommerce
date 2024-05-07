@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.app')
 @section('content')
 
-   
+
 
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -32,12 +32,12 @@
               <div class="card-header">
                 <h3 class="card-title">Create Product</h3>
               </div>
-              
+
               <!-- /.card-header -->
               <!-- form start -->
               <form action="{{route('dashboard.products.store')}}" method="post" enctype="multipart/form-data">
               @csrf
-              
+
 
                 <div class="card-body">
                 @include('dashboard.partials._errors')
@@ -51,7 +51,7 @@
                         <label>Description</label>
                         <textarea class="form-control" rows="1" placeholder="Enter product description" name="description"></textarea>
                   </div>
-                                        
+
                    <!-- textarea -->
                    <div class="form-group">
                         <label>Details</label>
@@ -71,9 +71,9 @@
                     <label for="exampleInputEmail1">Stock</label>
                     <input type="number" class="form-control" id="exampleInputEmail1" placeholder="{{ __("10") }}" step="0.01" required="" min="0" name="stock">
                   </div>
-                 
-                
-                 
+
+
+
                   <div class="form-group col-md-3 img">
                              <label>Image</label>
                              <input class="form-control image-1" type="file" name="image[]">
@@ -101,8 +101,8 @@
 
                             <img src="{{asset('dashboard_files/dist/img/default-150x150.png')}}" style="width:100px" class="img-thumbnail image-preview-3" alt="">
                   </div>
- 
-                  
+
+
                   <div class="form-group col-md-3 img">
                              <label>Image3</label>
                              <input class="form-control image-4" type="file" name="image[]">
@@ -113,7 +113,7 @@
                             <img src="{{asset('dashboard_files/dist/img/default-150x150.png')}}" style="width:100px" class="img-thumbnail image-preview-4" alt="">
                   </div>
 
-             
+
 
                     <div class="form-group">
                       <label>Category</label>
@@ -142,7 +142,7 @@
                     <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Product SKU" name="SKU">
                   </div>
                <!-- /.card-body -->
-               </div>  
+               </div>
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Add</button>
                 </div>
@@ -152,10 +152,10 @@
             </div>
         </div>
         <!-- /.row -->
-        
+
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-   
+
 @endsection
 

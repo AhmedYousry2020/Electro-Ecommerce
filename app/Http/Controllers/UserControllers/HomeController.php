@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,7 @@ class HomeController extends Controller
             return $q->where('name','like','%'.$request->input('searchBy').'%');
         })->with("category")->orderBy('name', 'asc')->get();
 
-      
+
         return view("website/home",compact("products"));
     }
 
@@ -29,11 +30,12 @@ class HomeController extends Controller
 
         $user = Auth::user();
         $orders = Order::where("user_id",$user->id)->get();
-        $addresses = $user->addresses()->get();
-        $phones = $user->phones()->get();
+        $addresses = $user->addresses()->first();
+        $phones = $user->phones()->first();
+        $categories = Category::all();
 
 
-        return view("website.my-account",compact("orders","addresses","phones"));
+        return view("website.my-account",compact("orders","addresses","phones","categories"));
     }
 
     public function autocomplete(Request $request){
@@ -41,12 +43,12 @@ class HomeController extends Controller
         ->where('name','like','%'.$request->input('searchBy').'%')->get();
          foreach($data as $item){
           $image = $item->images()->first();
-          $item->image =$image->image;  
+          $item->image =$image->image;
           $item->link = route('product.details',$item->id);
-          $item->sale_price = number_format($item->sale_price,2);  
+          $item->sale_price = number_format($item->sale_price,2);
         }
-        
-        return response()->json($data); 
+
+        return response()->json($data);
 
     }
 }

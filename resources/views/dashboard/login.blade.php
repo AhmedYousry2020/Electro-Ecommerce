@@ -48,16 +48,7 @@
             </div>
           </div>
         </div>
-        <div class="input-group mb-3">
 
-            <select class="form-control select2bs4" style="width: 100%;">
-              <option selected="selected">Select a Role</option>
-
-              <option value="artist">Artist</option>
-              <option value="admin">Admin</option>
-
-              </select>
-          </div>
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
