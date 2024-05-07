@@ -64,7 +64,7 @@
                 <!--End Slider -->
                 <!-- Banner Area Start -->
         <div class="banner-area style-two pt-100px pb-100px">
-            
+
         </div>
         <!-- Banner Area End -->
                 <!-- Product Area Start -->
@@ -93,12 +93,12 @@
                                     <div class="thumb">
                                         <a href="{{route('product.details',$product->id)}}" class="image">
                                             <img src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[0]->image)}}" alt="Product" />
-                                           
-                                            <img class="hover-image" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[1]->image)}}" alt="Product" />
+
+                                            <img class="hover-image" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[0]->image)}}" alt="Product" />
                                         </a>
                                     </div>
-                                    
-                                  
+
+
                                     <div class="content">
                                         <span class="category"><a href="#">{{$product->category->name}}</a></span>
                                         <h5 class="title"><a href="single-product.html">{{$product->name}}
@@ -108,23 +108,23 @@
                                             <span class="new">EGP {{number_format($product->sale_price)}}</span>
                                         </span>
                                     </div>
-                                 
+
                                     <div class="actions">
                                     <form id="AddToCart-form-{{$product->id}}" action="{{route('AddToCart')}}" method="POST" style="display:none">
-                                        @csrf 
+                                        @csrf
                                         <input type="hidden" class ="quantity" name="quantity" value="1">
-                                        
+
                                         <input type="hidden" name="product_id" value="{{$product->id}}">
                                       </form>
                                       <form id="AddToWishList-form-{{$product->id}}" action="{{route('AddItemToWishList')}}" method="POST" style="display:none">
-                                                  @csrf 
-                                        
+                                                  @csrf
+
                                                         <input type="hidden" name="product_id" value="{{$product->id}}">
                                                     </form>
                                                 <button title="Add To Cart" class="action add-to-cart" onclick="event.preventDefault();
                                                      document.getElementById('AddToCart-form-{{$product->id}}').submit();" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
                                                     class="pe-7s-shopbag"></i></button>
-                                                  
+
                                                 <button class="action wishlist" title="Wishlist" onclick="event.preventDefault();
                                                      document.getElementById('AddToWishList-form-{{$product->id}}').submit();" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
                                                         class="pe-7s-like"></i></button>
@@ -134,7 +134,7 @@
                                             </div>
                                 </div>
                             </div>
-                        @endforeach    
+                        @endforeach
                         </div>
                     </div>
                 </div>

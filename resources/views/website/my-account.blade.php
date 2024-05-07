@@ -29,7 +29,9 @@
                                 <li> <a href="#orders" data-bs-toggle="tab" class="nav-link">Orders</a></li>
                                 <li><a href="#downloads" data-bs-toggle="tab" class="nav-link">authentication</a></li>
                                 <li><a href="#address" data-bs-toggle="tab" class="nav-link">Addresses</a></li>
+                                @if(Auth::user()->type == 'artist')
                                 <li><a href="#products" data-bs-toggle="tab" class="nav-link">Products</a></li>
+                                @endif
                                 <li><a href="#account-details" data-bs-toggle="tab" class="nav-link">Account details</a>
                                 </li>
                                 <li><a href="{{route('logout')}}" class="nav-link">logout</a></li>
