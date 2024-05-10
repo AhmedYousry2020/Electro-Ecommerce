@@ -9,7 +9,7 @@ use App\Models\Product;
 class Cart extends Model
 {
     use HasFactory;
-    protected $fillable =["user_id","total_price","status"]; 
+    protected $fillable =["user_id","total_price","status","cart_code"];
 
 
     public function user(){
@@ -22,13 +22,13 @@ class Cart extends Model
     }
 
     public function hasProduct($id){
-    
+
         $objectsArray = [];
         foreach($this->products as $product){
            array_push($objectsArray,$product->id);
         }
         return in_array($id,$objectsArray);
-       
+
     }
-    
+
 }

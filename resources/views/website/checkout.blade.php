@@ -203,10 +203,10 @@
                                     </div>
                                     <div class="your-order-middle">
                                         <ul>
-                                        @foreach($products as $product) 
+                                        @foreach($products as $product)
                                         <li><span class="order-middle-left">{{$product->name}}</span> <span
                                                 class="order-price">EGP {{number_format($product->sale_price)}} </span></li>
-                                        @endforeach 
+                                        @endforeach
                                         </ul>
                                     </div>
                                     <div class="your-order-bottom">
@@ -267,8 +267,7 @@
                                 <form id="placeOrder-form" action="{{route('order.store')}}" method="post">
                                     @csrf
                                 </form>
-                                <a class="btn-hover" onclick="event.preventDefault();
-                                                     document.getElementById('placeOrder-form').submit();">Place Order</a>
+                                <a class="btn-hover" href="{{route('order.payment')}}">Checkout</a>
                             </div>
                         </div>
                     </div>

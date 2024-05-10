@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\UserControllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Artist;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -48,30 +49,52 @@ class AuthController extends Controller
         }
        $requestAll = $validator->validated();
        $requestAll['password'] = Hash::make($request->password);
+        if($requestAll['type'] == 'user')
+        {
+            $user = User::create(
+                [
+                    'username'=>$requestAll['username'],
+                    'first_name'=>$requestAll['first_name'],
+                    'last_name'=>$requestAll['last_name'],
+                    'type'=>$requestAll['type'],
+                    'email'=>$requestAll['email'],
+                    'password'=>$requestAll['password'],
+                    'phone_number'=>$requestAll['phone'],
+                    'address'=>$requestAll['address'],
 
-       $user = User::create(
-        [
-            'username'=>$requestAll['username'],
-            'first_name'=>$requestAll['first_name'],
-            'last_name'=>$requestAll['last_name'],
-            'type'=>$requestAll['type'],
-            'email'=>$requestAll['email'],
-            'password'=>$requestAll['password'],
-            ]
-       );
-       if($user){
-        UserAddress::create([
-            'user_id'=>$user->id,
-            'address'=>$requestAll['address'],
-            'location_country'=>"Egypt",
-            'zip_code'=>"111112",
+                    ]
+               );
 
-        ]);
-        UserPhone::create([
-            'user_id'=>$user->id,
-            'phone_number'=>$requestAll['phone'],
-        ]);
-       }
+        }else{
+            $user = User::create(
+                [
+                    'username'=>$requestAll['username'],
+                    'first_name'=>$requestAll['first_name'],
+                    'last_name'=>$requestAll['last_name'],
+                    'type'=>$requestAll['type'],
+                    'email'=>$requestAll['email'],
+                    'password'=>$requestAll['password'],
+                    'phone_number'=>$requestAll['phone'],
+                    'address'=>$requestAll['address'],
+
+                    ]
+               );
+            $user = Artist::create(
+                [
+                    'username'=>$requestAll['username'],
+                    'first_name'=>$requestAll['first_name'],
+                    'last_name'=>$requestAll['last_name'],
+                    'type'=>$requestAll['type'],
+                    'email'=>$requestAll['email'],
+                    'password'=>$requestAll['password'],
+                    'phone_number'=>$requestAll['phone'],
+                    'address'=>$requestAll['address'],
+
+                    ]
+               );
+
+        }
+
 
        if($user){
         return redirect()->route('loginForm')->with("success","created sucessfully, please log in to continue");

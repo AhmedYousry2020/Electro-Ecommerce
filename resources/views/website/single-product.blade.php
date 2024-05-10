@@ -26,25 +26,21 @@
                         <!-- Swiper -->
                         <div class="swiper-container zoom-top">
                             <div class="swiper-wrapper">
-                            @foreach($product->images as $image)   
                             <div class="swiper-slide">
-                                    <img class="img-responsive m-auto" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$image->image)}}" alt="">
-                                    <a class="venobox full-preview" data-gall="myGallery" href="{{asset('storage/uploads/product_images/'.$product->name.'/'.$image->image)}}">
+                                    <img class="img-responsive m-auto" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->image)}}" alt="">
+                                    <a class="venobox full-preview" data-gall="myGallery" href="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->image)}}">
                                         <i class="fa fa-arrows-alt" aria-hidden="true"></i>
                                     </a>
                                 </div>
-                            @endforeach  
                             </div>
                         </div>
                         <div class="swiper-container mt-20px zoom-thumbs slider-nav-style-1 small-nav">
                             <div class="swiper-wrapper">
-                            @foreach($product->images as $image)      
                             <div class="swiper-slide">
-                                    <img class="img-responsive m-auto" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$image->image)}}" alt="">
+                                    <img class="img-responsive m-auto" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->image)}}" alt="">
                             </div>
-                            @endforeach 
                             </div>
-                           
+
                             <!-- Add Arrows -->
                             <div class="swiper-buttons">
                                 <div class="swiper-button-next"></div>
@@ -117,8 +113,8 @@
                                 </div>
                                 <div class="pro-details-compare-wishlist pro-details-wishlist ">
                                 <form id="AddToWishList-form" action="{{route('AddItemToWishList')}}" method="POST" style="display:none">
-                                  @csrf 
-                                        
+                                  @csrf
+
                                 <input type="hidden" name="product_id" value="{{$product->id}}">
                                 </form>
                                     <a onclick="event.preventDefault();
@@ -257,7 +253,7 @@
                             </div>
                         </div>
                         <!-- product details description area end -->
-                        
+
                     </div>
                 </div>
             </div>
@@ -288,8 +284,8 @@
                                         </span>
                                         <div class="thumb">
                                             <a href="{{route('product.details',$product->id)}}" class="image">
-                                                <img src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[0]->image)}}" alt="Product" />
-                                                <img class="hover-image" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[1]->image)}}" alt="Product" />
+                                                <img src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->image)}}" alt="Product" />
+                                                <img class="hover-image" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->image)}}" alt="Product" />
                                             </a>
                                         </div>
                                         <div class="content">
@@ -303,21 +299,21 @@
                                         </div>
                                         <div class="actions">
                                         <form id="AddToCart-form-{{$product->id}}" action="{{route('AddToCart')}}" method="POST">
-                                        @csrf 
+                                        @csrf
                                         <input type="hidden" class ="quantity" name="quantity" value="1">
-                                        
+
                                         <input type="hidden" name="product_id" value="{{$product->id}}">
                                       </form>
                                       <form id="AddToWishList-form-{{$product->id}}" action="{{route('AddItemToWishList')}}" method="POST" style="display:none">
-                                                  @csrf 
-                                        
+                                                  @csrf
+
                                                         <input type="hidden" name="product_id" value="{{$product->id}}">
                                                     </form>
                                                 <button title="Add To Cart" class="action add-to-cart" onclick="event.preventDefault();
                                                      document.getElementById('AddToCart-form-{{$product->id}}').submit();" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
                                                     class="pe-7s-shopbag"></i></button>
 
-                                                  
+
                                                             <button class="action wishlist" title="Wishlist" onclick="event.preventDefault();
                                                      document.getElementById('AddToWishList-form-{{$product->id}}').submit();" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
                                                                     class="pe-7s-like"></i></button>
@@ -329,7 +325,7 @@
                                     </div>
                                 </div>
                                @endforeach
-                               
+
                             </div>
                             <!-- Add Arrows -->
                             <div class="swiper-buttons">
@@ -350,14 +346,14 @@
 
 $(document).ready(function(){
     $(document).on('click', '.inc', function (event) {
-    
+
     $('.quantity').val($('.cart-plus-minus-box').val());
 
 });
 $(document).on('click', '.dec', function (event) {
-    
+
     $('.quantity').val($('.cart-plus-minus-box').val());
-    
+
 });
 });
 

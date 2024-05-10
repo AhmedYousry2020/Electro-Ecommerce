@@ -49,7 +49,7 @@ class CartController extends Controller
             //check if there cart active or not (if not active then create one)
             $cart = $user->carts->last();
             if(!$cart || $cart->status == 0){
-                    $cart = $user->carts()->create(["status"=>"1"]);
+                    $cart = $user->carts()->create(["status"=>"1","cart_code"=>rand(1,100)]);
             }
 
             if($cart->total_price){

@@ -29,13 +29,13 @@ class HomeController extends Controller
     public function AccountDashboard(){
 
         $user = Auth::user();
-        $orders = Order::where("user_id",$user->id)->get();
-        $addresses = $user->addresses()->first();
-        $phones = $user->phones()->first();
+        $orders = Cart::where("user_id",$user->id)->get();
+        // $addresses = $user->addresses()->first();
+        // $phones = $user->phones()->first();
         $categories = Category::all();
 
 
-        return view("website.my-account",compact("orders","addresses","phones","categories"));
+        return view("website.my-account",compact("orders",'user',"categories"));
     }
 
     public function autocomplete(Request $request){

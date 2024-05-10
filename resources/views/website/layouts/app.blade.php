@@ -43,7 +43,7 @@ color: #a1a1a1;
 
 width: 100%;
 
-} 
+}
 
 
 /* .typeahead{
@@ -108,14 +108,14 @@ width: 100%;
                                     <i class="pe-7s-shopbag"></i>
                                   @auth
                                    @if($cart = Auth::user()->carts->where("status","1")->first())
-                                   <span class="header-action-num"> 
-                                   
+                                   <span class="header-action-num">
+
                                    {{$cart->products->count()}}
 
                                   </span>
                                    @else
-                                  <span class="header-action-num"> 
-                                   
+                                  <span class="header-action-num">
+
                                    0
                                   </span>
                                   @endif
@@ -123,12 +123,12 @@ width: 100%;
                                    @endauth
                                   @guest
 
-                                   <span class="header-action-num"> 
-            
+                                   <span class="header-action-num">
+
                                     {{\Gloudemans\Shoppingcart\Facades\Cart::content()->count()}}
                                    </span>
 
-                                  @endguest 
+                                  @endguest
                                     <!-- <span class="cart-amount">€30.00</span> -->
                                 </a>
                                 <a href="#offcanvas-mobile-menu" class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
@@ -169,25 +169,25 @@ width: 100%;
                                     <i class="pe-7s-shopbag"></i>
                                     @auth
                                    @if($cart = Auth::user()->carts->where("status","1")->first())
-                                   <span class="header-action-num"> 
-                                   
+                                   <span class="header-action-num">
+
                                    {{$cart->products->count()}}
 
                                   </span>
                                   @else
-                                  <span class="header-action-num"> 
-                                   
+                                  <span class="header-action-num">
+
                                    0
                                   </span>
                                   @endif
 
                                    @endauth
                                    @guest
-                                    <span class="header-action-num"> 
-                                   
+                                    <span class="header-action-num">
+
                                   {{Cart::content()->count()}}
                                    </span>
-                                  @endguest 
+                                  @endguest
                                 </a>
                                 <a href="#offcanvas-mobile-menu" class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
                                     <i class="pe-7s-menu"></i>
@@ -205,21 +205,21 @@ width: 100%;
                         <div class="main-menu position-relative">
                             <ul>
                                 <li class="dropdown"><a href="{{route('home')}}">Home </i></a>
-                                  
+
                                 </li>
-                               
+
                                 <li><a href="/about">About</a></li>
-                               
+
                                 <li class="dropdown position-static"><a href="#">Products <i
                                     class="fa fa-angle-down"></i></a>
                                 <ul class="sub-menu">
                                     @foreach($categories = App\Models\Category::all() as $category)
                                      <li><a href="/products?category_id={{$category->id}}"><span class="menu-text">{{$category->name}}</span></a></li>
                                      @endforeach
-                                    
-                                </ul>   
+
+                                </ul>
                                 </li>
-                               
+
                                 <li class="dropdown position-static"><a href="#">Shop <i
                                     class="fa fa-angle-down"></i></a>
                                     <ul class="mega-menu d-block">
@@ -244,7 +244,7 @@ width: 100%;
                                                 <li><a href="{{route('home')}}?searchBy=Lenovo">Lenovo</a></li>
                                                 <li><a href="{{route('home')}}?searchBy=Toshiba">Toshiba</a></li>
                                             </ul>
-                                           
+
                                         </li>
                                     </ul>
                                 </li>
@@ -304,7 +304,7 @@ width: 100%;
         <!-- offcanvas overlay end -->
         <!-- OffCanvas Wishlist Start -->
         @auth
-        @if($wishlist = Auth::user()->wishlists->where("status","1")->first())
+        {{-- @if($wishlist = Auth::user()->wishlists->where("status","1")->first())
         <div id="offcanvas-wishlist" class="offcanvas offcanvas-wishlist">
             <div class="inner">
                 <div class="head">
@@ -332,7 +332,7 @@ width: 100%;
                 </div>
             </div>
         </div>
-        @endif
+        @endif --}}
         <div id="offcanvas-wishlist" class="offcanvas offcanvas-wishlist">
             <div class="inner">
                 <div class="head">
@@ -340,7 +340,7 @@ width: 100%;
                     <button class="offcanvas-close">×</button>
                 </div>
                 <div class="body customScroll">
-                   
+
                 </div>
                 <!-- <div class="foot">
                     <div class="buttons">
@@ -358,7 +358,7 @@ width: 100%;
                             <button class="offcanvas-close">×</button>
                         </div>
                         <div class="body customScroll">
-                        
+
                         </div>
                         <div class="foot">
                             <!-- <div class="buttons mt-30px">
@@ -374,7 +374,7 @@ width: 100%;
         <!-- OffCanvas Cart Start -->
         @auth
         @if($cart = Auth::user()->carts->where("status","1")->first())
-         
+
         <div id="offcanvas-cart" class="offcanvas offcanvas-cart">
             <div class="inner">
                 <div class="head">
@@ -385,7 +385,7 @@ width: 100%;
                     <ul class="minicart-product-list">
                     @foreach($cart->products as $product)
                         <li>
-                            <a href="single-product.html" class="image"><img src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[0]->image)}}" alt="Cart product Image"></a>
+                            <a href="single-product.html" class="image"><img src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->image)}}" alt="Cart product Image"></a>
                             <div class="content">
                                 <a href="single-product.html" class="title">{{$product->name}}</a>
                                 <span class="quantity-price">{{$product->pivot->quantity}} x <span class="amount">EGP {{number_format($product->sale_price)}}</span></span>
@@ -397,7 +397,7 @@ width: 100%;
                                                      document.getElementById('removeItemFromCart-form').submit();" class="remove">×</a>
                             </div>
                         </li>
-                    @endforeach  
+                    @endforeach
                     </ul>
                 </div>
                 <div class="foot">
@@ -408,7 +408,7 @@ width: 100%;
                 </div>
             </div>
         </div>
-        
+
         @endif
         <div id="offcanvas-cart" class="offcanvas offcanvas-cart">
             <div class="inner">
@@ -417,7 +417,7 @@ width: 100%;
                     <button class="offcanvas-close">×</button>
                 </div>
                 <div class="body customScroll">
-                   
+
                 </div>
                 <div class="foot">
                     <div class="buttons mt-30px">
@@ -437,8 +437,8 @@ width: 100%;
                 </div>
                 <div class="body customScroll">
                     <ul class="minicart-product-list">
-                    @foreach(Cart::content() as $row) 
-                                    
+                    @foreach(Cart::content() as $row)
+
                         <li>
                             <a href="single-product.html" class="image"><img src="{{asset('storage/uploads/product_images/'.$row->name.'/'.$row->image)}}" alt="Cart product Image"></a>
                             <div class="content">
@@ -452,7 +452,7 @@ width: 100%;
                                                      document.getElementById('removeItemFromCart-form').submit();" class="remove">×</a>
                             </div>
                         </li>
-                    @endforeach  
+                    @endforeach
                     </ul>
                 </div>
                 <div class="foot">
@@ -463,8 +463,8 @@ width: 100%;
                 </div>
             </div>
         </div>
-        
-        @endguest 
+
+        @endguest
         <!-- OffCanvas Cart End -->
         <!-- OffCanvas Menu Start -->
         <div id="offcanvas-mobile-menu" class="offcanvas offcanvas-mobile-menu">
@@ -480,21 +480,21 @@ width: 100%;
                 <div class="offcanvas-menu mb-4">
                 <ul>
                                 <li class="dropdown"><a href="{{route('home')}}">Home </i></a>
-                                  
+
                                 </li>
-                               
+
                                 <li><a href="/about">About</a></li>
-                               
+
                                 <li class="dropdown position-static"><a href="#">Products <i
                                     class="fa fa-angle-down"></i></a>
                                 <ul class="sub-menu">
                                     @foreach($categories = App\Models\Category::all() as $category)
                                      <li><a href="/products?category_id={{$category->id}}"><span class="menu-text">{{$category->name}}</span></a></li>
                                      @endforeach
-                                    
-                                </ul>   
+
+                                </ul>
                                 </li>
-                               
+
                                 <li class="dropdown position-static"><a href="#">Shop <i
                                     class="fa fa-angle-down"></i></a>
                                     <ul class="mega-menu d-block">
@@ -580,7 +580,7 @@ width: 100%;
         <!-- content start -->
         @yield("content")
         <!-- content end -->
-        
+
          <!-- Footer Area Start -->
          <div class="footer-area">
             <div class="footer-container">
@@ -707,7 +707,7 @@ width: 100%;
     <script src="{{asset('website_files/js/plugins/venobox.min.js')}}"></script>
     <script src="{{asset('website_files/js/plugins/jquery-ui.min.js')}}"></script>
     <script src="{{asset('website_files/js/plugins/mailchimp-ajax.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <script type="text/javascript">
 
 var path = "{{ route('autocomplete') }}";
@@ -762,7 +762,7 @@ $('input.typeahead').typeahead({
 $(document).ready(function(){
     $('.sea-view').change(function(){
         var link = $(".link-view").data("href");
-        
+
    window.location.href= link;
 })
 });
@@ -775,7 +775,7 @@ $(document).ready(function(){
     <!-- <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/plugins.min.js"></script>
     <script src="assets/js/main.min.js"></script> -->
-   
+
 @yield("scripts")
     <!--Main JS (Common Activation Codes)-->
     <script src="{{asset('website_files/js/main.js')}}"></script>

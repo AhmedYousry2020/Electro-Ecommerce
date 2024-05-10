@@ -10,7 +10,7 @@ use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
-   
+
 
     public function checkout(){
 
@@ -22,25 +22,25 @@ class OrderController extends Controller
 
         return view("website.checkout",compact("cart","products"));
     }
-    public function AddOrder(Request $request){
+    public function payment(){
 
         $user = Auth::user();
-
-        $order = $user->orders()->create(["status"=>"0"]);
-        
         $cart = Cart::where("user_id",$user->id)->where("status",1)->first();
 
         $products = $cart->products()->get();
-        
-      
-       foreach ($products as $index=>$product){
-        
-        $order->products()->attach($product ,['quantity'=>$product->pivot->quantity]);
-        
-       }
-      
-       $order->update(['total_price'=>$cart->total_price]);
-       $cart->delete();
+
+
+        return view("website.payment",compact("cart","products",'user'));
+    }
+    public function AddOrder(){
+
+        $user = Auth::user();
+
+        // $order = $user->orders()->create(["status"=>"0"]);
+
+        $cart = Cart::where("user_id",$user->id)->where("status",1)->first();
+
+        $cart->delete();
 
         return redirect()->route("cart.items");
 

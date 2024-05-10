@@ -66,7 +66,8 @@ Route::group([],function(){
     Route::post("/my-account/change-password",[AccountController::class,'change_password'])->name("account.dashboard.change_password")->middleware("auth");
 
     Route::get("/order/checkout",[OrderController::class,'checkout'])->name("order.checkout")->middleware("auth");
+    Route::get("/order/payment",[OrderController::class,'payment'])->name("order.payment")->middleware("auth");
 
-    Route::post("/order/store",[OrderController::class,'AddOrder'])->name("order.store")->middleware("auth");
+    Route::get("/order/store",[OrderController::class,'AddOrder'])->name("order.store")->middleware("auth");
 
 });

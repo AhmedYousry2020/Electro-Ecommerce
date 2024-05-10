@@ -3,7 +3,7 @@
 <style>
 .breadcrumb-area .breadcrumb-title {
     color: #000
-} 
+}
 .breadcrumb-list li a{
     color: #000
 }
@@ -32,7 +32,7 @@
                 <h3 class="cart-page-title">Your cart items</h3>
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                        
+
                             <div class="table-content table-responsive cart-table-content">
                                 <table>
                                     <thead>
@@ -46,13 +46,13 @@
                                         </tr>
                                     </thead>
                                     <form id ="updateCartItems-form" action="{{route('UpdateCartItems')}}" method="post" style="display: none;">
-                                    @csrf                         
+                                    @csrf
                                     @auth
-                                    <tbody> 
+                                    <tbody>
                                        @foreach($cart->products as $product)
                                         <tr>
                                             <td class="product-thumbnail">
-                                                <a href="#"><img class="img-responsive ml-15px" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[0]->image)}}" alt="" /></a>
+                                                <a href="#"><img class="img-responsive ml-15px" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->image)}}" alt="" /></a>
                                             </td>
                                             <td class="product-name"><a href="#">{{$product->name}}</a></td>
                                             <td class="product-price-cart"><span class="amount">EGP {{number_format($product->sale_price)}}</span></td>
@@ -63,22 +63,22 @@
                                             </td>
                                              <input type="hidden" name="product_ids[]" value="{{$product->id}}">
                                              <input type="hidden" class ="quantity-{{$product->id}}" name="quantities[]"  value="{{$product->pivot->quantity}}">
-                                            
+
                                             <td class="product-subtotal">EGP {{number_format($product->sale_price * $product->pivot->quantity)}}</td>
                                             <td class="product-remove">
                                                 <a href="{{route('product.details',$product->id)}}"><i class="fa fa-pencil"></i></a>
-                                                
-                                               
+
+
                                                 <a class="remove-item" data-id="{{$product->id}}" data-method="delete" ><i class="fa fa-times"></i></a>
                                             </td>
                                         </tr>
-                                      @endforeach 
+                                      @endforeach
                                     </tbody>
                                     @endauth
-                                    
+
                                     @guest
                                     <?php foreach(Cart::content() as $row) :?>
-                                    
+
                                         <tr>
                                             <td class="product-thumbnail">
                                                 <a href="#"><img class="img-responsive ml-15px" src="{{asset('storage/uploads/product_images/'.$row->name.'/'.$row->image)}}" alt="" /></a>
@@ -92,17 +92,17 @@
                                             </td>
                                              <input type="hidden" name="product_ids[]" value="{{$row->id}}">
                                              <input type="hidden" class ="quantity-{{$row->id}}" name="quantities[]"  value="{{$row->qty}}">
-                                            
+
                                             <td class="product-subtotal">EGP {{number_format($row->price * $row->qty)}}</td>
                                             <td class="product-remove">
                                                 <a href="{{route('product.details',$row->id)}}"><i class="fa fa-pencil"></i></a>
-                                                
-                                               
+
+
                                                 <a class="remove-item" data-id="{{$row->id}}" data-method="delete" ><i class="fa fa-times"></i></a>
                                             </td>
                                         </tr>
 
-                                     <?php endforeach;?>   
+                                     <?php endforeach;?>
                                     @endguest
                                 </table>
                                 </form>
@@ -119,7 +119,7 @@
                                                 {{ method_field("delete") }}
                                          </form>
 
-                                        
+
                                             <button onclick="event.preventDefault();
                                                      document.getElementById('updateCartItems-form').submit();">Update Shopping Cart</button>
                                             <a onclick="event.preventDefault();
@@ -128,7 +128,7 @@
                                     </div>
                                 </div>
                             </div>
-                      
+
                         <div class="row">
                             <div class="col-lg-4 col-md-6 mb-lm-30px">
                                 <div class="cart-tax">
@@ -195,11 +195,11 @@
                                     <h5>Total products <span>
                                     @auth
                                     EGP {{number_format($cart->total_price)}}
-                                          
+
                                     @endauth
                                     @guest
                                     EGP {{Cart::pricetotal()}}
-                                    @endguest    
+                                    @endguest
                                     </span></h5>
                                     <div class="total-shipping">
                                         <h5>Total shipping</h5>
@@ -208,9 +208,9 @@
                                             <li><input type="checkbox" /> Express <span>EGP 30.00</span></li>
                                         </ul>
                                     </div>
-                                    <h4 class="grand-totall-title">Grand Total <span> 
+                                    <h4 class="grand-totall-title">Grand Total <span>
                                     @auth
-                                    EGP {{number_format($cart->total_price)}}      
+                                    EGP {{number_format($cart->total_price)}}
                                     @endauth
                                     @guest
                                     EGP {{Cart::pricetotal()}}
@@ -245,24 +245,24 @@
         </div>
         <!-- Empty Cart area end -->
         @endif
-@endsection  
+@endsection
 
 @section("scripts")
 <script>
 
 $(document).ready(function(){
-   
+
     $(document).on('click', '.inc', function (event) {
-        var id = $(this).parent('.cart-plus-minus').find(".cart-plus-minus-box").data("id"); 
+        var id = $(this).parent('.cart-plus-minus').find(".cart-plus-minus-box").data("id");
        $('.quantity-'+id).val($(this).parent('.cart-plus-minus').find(".cart-plus-minus-box").val());
-          
+
     // $('.quantity-'+id).val($('.p-m-'+id).val());
 
 });
 $(document).on('click', '.dec', function (event) {
-    var id = $(this).parent('.cart-plus-minus').find(".cart-plus-minus-box").data("id"); 
+    var id = $(this).parent('.cart-plus-minus').find(".cart-plus-minus-box").data("id");
        $('.quantity-'+id).val($(this).parent('.cart-plus-minus').find(".cart-plus-minus-box").val());
-          
+
 });
 
 $('.remove-item').on('click',function(e){

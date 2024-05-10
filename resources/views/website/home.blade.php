@@ -92,9 +92,9 @@
                                     </span>
                                     <div class="thumb">
                                         <a href="{{route('product.details',$product->id)}}" class="image">
-                                            <img src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[0]->image)}}" alt="Product" />
+                                            <img src="{{asset('/storage/uploads/product_images/'.$product->name.'/'.$product->image)}}" alt="Product" />
 
-                                            <img class="hover-image" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->images[0]->image)}}" alt="Product" />
+                                            <img class="hover-image" src="{{asset('storage/uploads/product_images/'.$product->name.'/'.$product->image)}}" alt="Product" />
                                         </a>
                                     </div>
 

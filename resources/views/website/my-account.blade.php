@@ -64,7 +64,7 @@
                                             <tr>
                                                 <td>{{$index + 1 }}</td>
                                                 <td>{{$order->created_at}}</td>
-                                                @if($order->status == 1)
+                                                @if($order)
                                                 <td><span class="success">Completed</span></td>
                                                 @else
                                                 <td><span >Processing</span></td>
@@ -115,14 +115,13 @@
                                 <p>The following addresses will be used on the checkout page by default.</p>
                                 <h5 class="billing-address">Billing address</h5>
                                 <a href="#" class="view">Edit</a>
-                                <p class="mb-2"><strong>{{$addresses->address}}</strong></p>
+                                <p class="mb-2"><strong>{{$user->address}}</strong></p>
                                 <address>
 
-                                    <span class="mb-1 d-inline-block"><strong>Phone:</strong> {{$phones->phone_number}}</span>,
+                                    <span class="mb-1 d-inline-block"><strong>Phone:</strong> {{$user->phone_number}}</span>,
                                     <br>
-                                    <span class="mb-1 d-inline-block"><strong>ZIP:</strong> {{$addresses->zip_code}}</span>,
                                     <br>
-                                    <span><strong>Country:</strong> {{$addresses->location_country}}</span>
+                                    <span><strong>Country:</strong> Egypt</span>
                                 </address>
                             </div>
                             <div class="tab-pane fade" id="account-details">
